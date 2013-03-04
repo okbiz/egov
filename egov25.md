@@ -20,7 +20,7 @@
 공통컴포넌트로 구성되어 있습니다. 2.0 버전부터는 jQueryMobile 중심의 모바일 
 프레임워크가 추가되었습니다.
 
-<그림> 표준프레임워크 구성 (2.5)
+<그림> 표준프레임워크 구성 (2.5)  
 ![개발환경 다운로드 페이지](./imgs/intro_egovframe2.5.png "개발환경 다운로드 페이지")
 
 
@@ -34,7 +34,7 @@
 상단 메뉴의 다운로드를 선택합니다. 개발환경 메뉴를 선택하면 다운로드할 수 있는 
 목록이 보입니다.
 
-<그림> 개발환경 다운로드 페이지
+<그림> 개발환경 다운로드 페이지  
 ![개발환경 다운로드 페이지](./imgs/downloads.egovframe.dev.01.png "개발환경 다운로드 페이지")
 
 ### 개발환경 2.5.1 다운로드
@@ -46,7 +46,7 @@
 책에서는 "개발자용 개발환경(Implementation Tool) Full Version 2.5.1"을 
 기준으로 설명하겠습니다.
 
-<그림> 개발환경 다운로드 목록
+<그림> 개발환경 다운로드 목록  
 ![개발환경 다운로드 목록](./imgs/downloads.egovframe.dev.02.png "개발환경 다운로드 목록")
 
 ### 다운로드 상세 페이지
@@ -57,12 +57,12 @@
 
 일반적인 이클립스 Java EE 패키지가 230MB 정도인데, 2.5배의 크기입니다.
 
-<그림> 개발환경 Full Version 2.5.1 상세 페이지
+<그림> 개발환경 Full Version 2.5.1 상세 페이지  
 ![개발환경 Full Version 2.5.1 상세 페이지](./imgs/downloads.egovframe.dev.03.png "개발환경 Full Version 2.5.1 상세 페이지")
 
 네트워크마다 속도가 다릅니다만 대략 5~10분 정도가 소요됩니다.
 
-<그림> 개발환경 Full Version 2.5.1 다운로드
+<그림> 개발환경 Full Version 2.5.1 다운로드  
 ![개발환경 Full Version 2.5.1 다운로드](./imgs/downloads.egovframe.dev.04.png "개발환경 Full Version 2.5.1 다운로드 속도")
 
 ### 개발환경 도구 설치
@@ -70,7 +70,7 @@
 다운로드 받은 eGovFrameDev-2.5.1-FullVer.zip 파일의 압축을 풉니다. 
 eGovFrameDev-2.5.1-FullVer 폴더를 C:\ 경로로 이동합니다.
 
-<그림> 개발환경 도구 설치 위치
+<그림> 개발환경 도구 설치 위치  
 ![개발환경 도구 설치 위치](./imgs/downloads.install.dev.01.png "개발환경 도구 설치 위치")
 
 
