@@ -30,9 +30,11 @@
 
 ### 표준프레임워크 개발환경 다운로드
 
-개발환경을 구성하기 위해 필요한 파일을 다운로드해야 합니다. [http://www.egovframe.go.kr](http://www.egovframe.go.kr) 사이트에 접속합니다. 로그인 후에 다운로드 받을 수 있기 때문에, 먼저 회원가입을 마칩니다. 로그인 하고,
-상단 메뉴의 다운로드를 선택합니다. 개발환경 메뉴를 선택하면 다운로드할 수 있는 
-목록이 보입니다.
+개발환경을 구성하기 위해 필요한 파일을 다운로드해야 합니다. 
+[http://www.egovframe.go.kr](http://www.egovframe.go.kr) 사이트에 
+접속합니다. 로그인 후에 다운로드 받을 수 있기 때문에, 먼저 회원가입을 마칩니다. 
+로그인 하고, 상단 메뉴의 다운로드를 선택합니다. 개발환경 메뉴를 선택하면 다운로드할 
+수 있는 목록이 보입니다.
 
 <그림> 개발환경 다운로드 페이지  
 ![개발환경 다운로드 페이지](./imgs/downloads.egovframe.dev.01.png "개발환경 다운로드 페이지")
@@ -51,9 +53,14 @@
 
 ### 다운로드 상세 페이지
 
-로그인 후에 상세페이지로 이동해서 Full Version을 다운로드합니다. 설명에도 있지만 이클립스의 여러 가지 플러그인들이 설치되어 있는 통합 개발도구입니다.
+로그인 후에 상세페이지로 이동해서 Full Version을 다운로드합니다. 설명에도 있지만 
+이클립스의 여러 가지 플러그인들이 설치되어 있는 통합 개발도구입니다.
 
-> 개발자용 개발환경(Implementation Tool) Full Version은 개발자의 코드 작성을 지원하는 도구로써, eGovFrame기반의 어플리케이션 개발을 지원하는 IDE와 Editor(SourceCode, UML, ERD, DBIO, WebFlow, Code Generation, Code Inspection, 공통컴포넌트 생성, 맞춤형 개발환경, Nexus, SVN)와 Debug(Local, Remote), Mobile IDE, Batch IDE, RDT로 구성되어 있습니다.
+> 개발자용 개발환경(Implementation Tool) Full Version은 개발자의 코드 작성을 
+> 지원하는 도구로써, eGovFrame기반의 어플리케이션 개발을 지원하는 IDE와 
+> Editor(SourceCode, UML, ERD, DBIO, WebFlow, Code Generation, 
+> Code Inspection, 공통컴포넌트 생성, 맞춤형 개발환경, Nexus, SVN)와 
+> Debug(Local, Remote), Mobile IDE, Batch IDE, RDT로 구성되어 있습니다.
 
 일반적인 이클립스 Java EE 패키지가 230MB 정도인데, 2.5배의 크기입니다.
 
@@ -68,7 +75,8 @@
 ### 개발환경 도구 설치
 
 다운로드 받은 eGovFrameDev-2.5.1-FullVer.zip 파일의 압축을 풉니다. 
-eGovFrameDev-2.5.1-FullVer 폴더를 C:\ 경로로 이동합니다. C:\eGovFrameDev-2.5.1-FullVer 폴더 안에 eclipse 와 workspace가 보이면 
+eGovFrameDev-2.5.1-FullVer 폴더를 C:\ 경로로 이동합니다. 
+C:\eGovFrameDev-2.5.1-FullVer 폴더 안에 eclipse 와 workspace가 보이면 
 제대로 위치를 잡았습니다.
 
 <그림> 개발환경 도구 설치 위치  
@@ -113,8 +121,8 @@ Nexus 입니다. 여기 목록에는 없지만 Ant와 JDK가 포함되어 있습
 ### 환경 변수 설정
 
 환경 변수란 시스템에서 활용되는 변수를 뜻합니다. 윈도우에서는 환경 변수를 컴퓨터 속성 > 
-고급 시스템 설정 > 고급 탭 > 환경 변수 > 시스템 변수 > 새로 만들기 순서로 접근해서 만들 
-수 있습니다.  
+고급 시스템 설정 > 고급 탭 > 환경 변수 > 시스템 변수 > 새로 만들기 순서로 접근해서 
+만들 수 있습니다.  
 윈도우 탐색기에서 컴퓨터를 선택합니다. 컨텍스트 메뉴(마우스 오른 버튼 클릭시 나오는 메뉴, 
 문맥에 따라 항목이 바뀌는 메뉴)에서 속성을 선택합니다.  
 <그림> 컴퓨터 속성    
