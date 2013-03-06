@@ -279,26 +279,79 @@ Tomcat v6.0 Server at localhost 를 더블클릭합니다. 편집기 영역에 �
 ![톰캣 포트 변경](./imgs/dev.svr.07.port.png "톰캣 포트 변경")
 
 ### 프로젝트 실행
-톰캣 서버 설정을 마쳤으면 이제 샘플로 만들어진 프로젝트를 실행할 수 있습니다. 
+톰캣 서버 설정을 마쳤으면 이제 샘플로 만들어진 프로젝트를 실행할 수 있습니다. 프로젝트 
+ok.egov를 선택하고 컨텍스트 메뉴 > Run As > Run on Server 항목을 선택합니다.
 
-<그림>
-![](./imgs/dev.run.01.png "")
-<그림>
-![](./imgs/dev.run.02.select.png "")
-<그림>
-![](./imgs/dev.run.03.nojdbc.png "")
-<그림>
-![](./imgs/dev.run.04.hsqldb.png "")
-<그림>
-![](./imgs/dev.run.05.pathtool.png "")
-<그림>
-![](./imgs/dev.run.06.runhsql.png "")
-<그림>
-![](./imgs/dev.run.07.sample.png "")  
+<그림> 웹 프로젝트 실행
+![웹 프로젝트 실행](./imgs/dev.run.01.png "웹 프로젝트 실행")
 
-톰캣 서버를 정지하기 위해서는 서버 탭에서 정지를 원하는 서버를 선택하고 빨간 아이콘을 클릭하면 shutdown 명령을 실행한 것처럼 정지됩니다. 모니터 아이콘의 콘솔 탭에서도 빨간 아이콘이 있는데, 프로세스를 kill하는 효과가 있습니다. 이 경우 종료 절차를 거치지 않고, 바로 종료됩니다. 시작 아이콘과 디버그 아이콘을 통해서 톰캣을 다시 시작할 수 있습니다.  
+서버를 선택하는 창이 나타납니다. 목록에 있는 서버를 선택하고 Finish 버튼을 클릭합니다. 
+8080포트를 사용하는 서버가 시작됩니다.
+
+<그림> 실행 서버 선택
+![실행 서버 선택](./imgs/dev.run.02.select.png "실행 서버 선택")
+
+이클립스에 웹 뷰가 나타나면서 샘플 프로젝트 http://localhost:8080/egov/ 웹페이지를 
+호출합니다. 샘플 프로젝트는 DB를 호출하게 되어 있습니다. DB 서버에 접속할 수 없어서 
+"Could not open JDBC Connection ..." 메시지를 보게 됩니다. 지금까지 잘 따라오신 
+것입니다. 다음으로 DB 서버를 시작해보겠습니다. 참고로 경우에 따라 몇 가지 예외가 발생하게 
+되는데, 이 절의 마지막에 예외 처리를 위한 방법들을 알려드리겠습니다.
+
+<그림> JDBC 연결 에러 메시지  
+![JDBC 연결 에러 메시지](./imgs/dev.run.03.nojdbc.png "JDBC 연결 에러 메시지")  
+
+ok.egov 프로젝트 폴더에 DATABASE/db 가 있습니다. db 폴더를 펼쳐 보면 여러 sql 관련 
+파일들을 볼 수 있습니다. 여기서 hsqldb라는 경량 파일 DB를 실행해 보겠습니다. db폴더를 
+선택합니다. 이 경로를 쉽게 이동하기 위해서 pathtool이라는 플러그인 기능을 사용합니다.
+
+<그림> db 폴더  
+![db 폴더](./imgs/dev.run.04.hsqldb.png "db 폴더")  
+
+이클립스 상단 툴바에서 까만 아이콘을 클릭합니다. 선택된 경로로 커맨드 창을 띄워주는 기능입니다.
+
+<그림> pathtool 커맨드 창 아이콘  
+![pathtool 커맨드 창 아이콘](./imgs/dev.run.05.pathtool.png "pathtool 커맨드 창 아이콘")
+
+커맨드 창이 hsqlDB를 실행할 수 있는 db 폴더에 경로가 맞춰져서 뜹니다. runHSqlDB.cmd 
+파일을 실행할 것입니다. run이라고 입력하고 키보드 좌측의 탭키를 치면 나머지 이름이 자동으로 
+완성됩니다. 엔터를 눌러 hsqlDB를 실행합니다. 만약 종료하기 원하면 이 커맨드 창을 닫아버리거나, 
+이 창에서 ctrl+C를 입력하면 hsqlDB가 정지됩니다.
+DB 실행을 확인했다면 에러가 발생했던 화면으로 가서 새로 페이지를 호출해 봅니다.  
+  
+<그림> hsqlDB 실행
+![hsqlDB 실행](./imgs/dev.run.06.runhsql.png "hsqlDB 실행")  
+
+hsql 데이터베이스가 실행된 후에 화면을 새로고침 아이콘을 통해서 갱신하면 목록이 나타납니다. 
+데이터에 입력과 조화가 가능한 간단한 예제입니다. 이후에 이 예제를 통해서 스프링 프레임워크의 
+기본을 알아보겠습니다.  
+<그림> 샘플 프로젝트 실행 화면  
+![샘플 프로젝트 실행 화면](./imgs/dev.run.07.sample.png "샘플 프로젝트 실행 화면")  
+
+톰캣 서버를 정지하기 위해서는 서버 탭에서 정지를 원하는 서버를 선택하고 빨간 아이콘을 클릭하면 
+shutdown 명령을 실행한 것처럼 정지됩니다. 모니터 아이콘의 콘솔 탭에서도 빨간 아이콘이 있는데, 
+프로세스를 kill하는 효과가 있습니다. 이 경우 종료 절차를 거치지 않고, 바로 종료됩니다. 
+시작 아이콘과 디버그 아이콘을 통해서 톰캣을 다시 시작할 수 있습니다.  
 <그림> 톰캣 서버 시작과 정지  
 ![톰캣 서버 시작과 정지](./imgs/dev.run.08.stop.png "톰캣 서버 시작과 정지")  
+
+### 웹 애플리케이션 배포 에러 대응
+
+![properties](./imgs/dev.err.01.properties.png "properties")  
+![deploy.full](./imgs/dev.err.02.1.deploy.full.png "deploy.full")
+![todo](./imgs/dev.err.02.2.deploy.full.png       "todo")  
+![todo](./imgs/dev.err.02.3.deploy.full.png       "todo")  
+![todo](./imgs/dev.err.02.4.remove.png            "todo")  
+![todo](./imgs/dev.err.02.5.tomcat.clean.png      "todo")  
+![todo](./imgs/dev.err.02.6.tomcat.clean.work.png "todo")  
+![todo](./imgs/dev.err.02.7.class.notfound.png    "todo")  
+![todo](./imgs/dev.err.02.8.prj.clean.png         "todo")  
+![todo](./imgs/dev.err.02.9.prj.clean.png         "todo")  
+![todo](./imgs/dev.err.02.a.ok.log.png            "todo")  
+![todo](./imgs/dev.err.02.deploy.png              "todo")  
+![todo](./imgs/dev.err.03.fail.png                "todo")  
+![todo](./imgs/dev.err.04.fail.png                "todo")  
+![todo](./imgs/dev.err.05.deploy.full.png         "todo")  
+
 
 
 ## 개발환경 서버
