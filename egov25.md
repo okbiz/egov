@@ -318,7 +318,7 @@ ok.egov 프로젝트 폴더에 DATABASE/db 가 있습니다. db 폴더를 펼쳐
 이 창에서 ctrl+C를 입력하면 hsqlDB가 정지됩니다.
 DB 실행을 확인했다면 에러가 발생했던 화면으로 가서 새로 페이지를 호출해 봅니다.  
   
-<그림> hsqlDB 실행
+<그림> hsqlDB 실행  
 ![hsqlDB 실행](./imgs/dev.run.06.runhsql.png "hsqlDB 실행")  
 
 hsql 데이터베이스가 실행된 후에 화면을 새로고침 아이콘을 통해서 갱신하면 목록이 나타납니다. 
@@ -336,21 +336,58 @@ shutdown 명령을 실행한 것처럼 정지됩니다. 모니터 아이콘의 �
 
 ### 웹 애플리케이션 배포 에러 대응
 
+표준프레임워크 개발도구 사용시 발생되는 몇 가지 에러 상황이 있습니다. 웹 애플리케이션에 오류가 있는 경우 404 에러가 발생하는 경우와 m2eclipse 플러그인의 버그로 resources 폴더가 배포되지 않는 경우 두 가지를 설명하겠습니다.
+
+콘솔 뷰에 그림과 같이 Class를 찾을 수 없다고 에러가 나는 경우는 빌드가 제대로 되지 않은 경우입니다.  
+<그림> 클래스를 찾지 못하는 예외  
+![클래스를 찾지 못하는 예외](./imgs/dev.err.04.fail.png "클래스를 찾지 못하는 예외")  
+
+브라우저에는 404 에러를 표시하고, 프로젝트의 다른 파일 경로도 404로 나타나지 않습니다. 이런 경우 Context 전체가 웹앱으로 등록되지 못해서 발생하는 경우입니다. web.xml 파일에 등록된 클래스를 찾지 못하는 경우도 같은 상황이 발생하게 됩니다.  
+<그림> 404 Page Not Found  
+![404 Page Not Found](./imgs/dev.err.03.fail.png "404 Page Not Found")  
+
+이런 경우 프로젝트를 다시 빌드해줍니다. 그리고, 등록된 웹 앱을 톰캣에서 제거했다가 다시 등록하고, 배포된 소스 폴더와 톰캣의 work폴더를 지워주는 작업도 함께 합니다. 이에 대한 방법을 설명하겠습니다.  
+서버 뷰의 톰캣 하위에 보면 ok.egov 프로젝트가 연결되어 있는 것이 보입니다. ok.egov를 선택하고 컨텍스트 메뉴에서 Remove를 선택하면 톰캣과 프로젝트의 연결이 제거됩니다. 프로젝트를 다시 실행하면 재등록되기 때문에 지우는 것에 부담을 가질 필요는 없습니다.  
+<그림> 프로젝트 연결 끊기  
+![프로젝트 연결 끊기](./imgs/dev.err.02.4.remove.png "프로젝트 연결 끊기")  
+
+우선 프로젝트의 빌드를 다시 합니다. 기존에 컴파일된 클래스를 다 지우고, 새로 컴파일하는 것입니다. 컴파일과 리소스의 복사 과정이 포함된 빌드를 다시 수행하면 누락된 클래스를 포함할 수 있습니다. 이클립스 좌측 Project Explorer에서 ok.egov 프로젝트를 선택합니다. 메뉴의 Project > Clean...을 선택합니다.  
+<그림> 프로젝트 Clean...  
+![프로젝트 Clean...](./imgs/dev.err.02.8.prj.clean.png "프로젝트 Clean...")  
+
+이어서 나오는 창에서 프로젝트를 선택합니다. 전체를 선택하면 워크스페이스의 모든 프로젝트를 전부 다시 빌드합니다. 우측에 있는 선택한 프로젝트만 다시 빌드 라디오 버튼을 클릭하고 ok.egov 프로젝트를 선택합니다. OK 버튼을 클릭하면 다시 빌드가 이루어집니다.  
+
+<그림> 다시 빌드할 프로젝트 선택  
+![다시 빌드할 프로젝트 선택](./imgs/dev.err.02.9.prj.clean.png "다시 빌드할 프로젝트 선택")  
+
+그리고 톰캣에 배포된 소스를 지워줍니다. 서버 뷰에서 톰캣을 선택하고 컨텍스트 메뉴에서 Clean 항목을 선택합니다. 이클립스 워크스페이스에서 톰캣 서버가 사용하는 위치로 코드가 배포되어서 실행되는데 .metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps 폴더 하위에 배포됩니다. 여기 있는 코드를 지우고 다시 배포하는 작업입니다.  
+<그림> 톰캣 Clean...  
+![톰캣 Clean...](./imgs/dev.err.02.5.tomcat.clean.png "톰캣 Clean...")  
+
+JSP를 실행할 경우 자동으로 서블릿 java로 변환되고, 이것을 컴파일해서 클래스를 만들어 실행합니다. 이 때 작업 파일이 위치하는 폴더가 work입니다. 이 폴더 또한 비우는 과정입니다. 서버 뷰에서 톰캣을 선택하고 컨텍스트 메뉴에서 Clean tomcat Work Directory...를 선택합니다.  
+<그림> 톰캣 Work 폴더 지우기  
+![톰캣 Work 폴더 지우기](./imgs/dev.err.02.6.tomcat.clean.work.png "톰캣 Work 폴더 지우기")  
+
+이 과정을 거치면 프로젝트를 깨끗이 빌드하게 됩니다.  
+
+### Deployment Assembly 이슈  
+
+m2eclipse 플러그인에서 프로젝트의 resources 폴더가 누락되는 버그가 가끔 발생합니다. 정상적으로 생성된다면 그림과 같이 되어야 합니다.
+<그림> 정상적인 Deployment Assembly 설정  
+![정상적인 Deployment Assembly 설정](./imgs/dev.err.05.deploy.full.png "정상적인 Deployment Assembly 설정")  
+
+그러나 잘못 설정된 경우는 여러 항목이 빠져 있습니다. 때문에 빌드 시에 properties 같은 파일들이 포함되지 않아서 프로젝트가 실행되지 않게 됩니다.  
+<그림> 누락된 Deployment Asembly 설정  
+![누락된 Deployment Asembly 설정](./imgs/dev.err.02.deploy.png "누락된 Deployment Asembly 설정")  
+
+
+
 ![properties](./imgs/dev.err.01.properties.png "properties")  
 ![deploy.full](./imgs/dev.err.02.1.deploy.full.png "deploy.full")
-![todo](./imgs/dev.err.02.2.deploy.full.png       "todo")  
-![todo](./imgs/dev.err.02.3.deploy.full.png       "todo")  
-![todo](./imgs/dev.err.02.4.remove.png            "todo")  
-![todo](./imgs/dev.err.02.5.tomcat.clean.png      "todo")  
-![todo](./imgs/dev.err.02.6.tomcat.clean.work.png "todo")  
-![todo](./imgs/dev.err.02.7.class.notfound.png    "todo")  
-![todo](./imgs/dev.err.02.8.prj.clean.png         "todo")  
-![todo](./imgs/dev.err.02.9.prj.clean.png         "todo")  
-![todo](./imgs/dev.err.02.a.ok.log.png            "todo")  
-![todo](./imgs/dev.err.02.deploy.png              "todo")  
-![todo](./imgs/dev.err.03.fail.png                "todo")  
-![todo](./imgs/dev.err.04.fail.png                "todo")  
-![todo](./imgs/dev.err.05.deploy.full.png         "todo")  
+![todo](./imgs/dev.err.02.2.deploy.full.png       "todo1")  
+![todo](./imgs/dev.err.02.3.deploy.full.png       "todo2")  
+![todo](./imgs/dev.err.02.7.class.notfound.png    "todo4")  
+![todo](./imgs/dev.err.02.a.ok.log.png            "todo7")  
 
 
 
