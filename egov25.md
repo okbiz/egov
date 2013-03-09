@@ -288,7 +288,7 @@ ok.egov를 선택하고 컨텍스트 메뉴 > Run As > Run on Server 항목을 �
 서버를 선택하는 창이 나타납니다. 목록에 있는 서버를 선택하고 Finish 버튼을 클릭합니다. 
 8080포트를 사용하는 서버가 시작됩니다.
 
-<그림> 실행 서버 선택
+<그림> 실행 서버 선택  
 ![실행 서버 선택](./imgs/dev.run.02.select.png "실행 서버 선택")
 
 이클립스에 웹 뷰가 나타나면서 샘플 프로젝트 http://localhost:8080/egov/ 웹페이지를 
@@ -341,7 +341,8 @@ shutdown 명령을 실행한 것처럼 정지됩니다. 모니터 아이콘의 �
 콘솔 뷰에 그림과 같이 Class를 찾을 수 없다고 에러가 나는 경우는 빌드가 제대로 되지 않은 경우입니다.  
 <그림> 클래스를 찾지 못하는 예외  
 ![클래스를 찾지 못하는 예외](./imgs/dev.err.04.fail.png "클래스를 찾지 못하는 예외")  
-
+<그림> 클래스를 찾지 못하는 예외 2  
+![클래스를 찾지 못하는 예외 2](./imgs/dev.err.02.7.class.notfound.png    "클래스를 찾지 못하는 예외 2")  
 브라우저에는 404 에러를 표시하고, 프로젝트의 다른 파일 경로도 404로 나타나지 않습니다. 이런 경우 Context 전체가 웹앱으로 등록되지 못해서 발생하는 경우입니다. web.xml 파일에 등록된 클래스를 찾지 못하는 경우도 같은 상황이 발생하게 됩니다.  
 <그림> 404 Page Not Found  
 ![404 Page Not Found](./imgs/dev.err.03.fail.png "404 Page Not Found")  
@@ -380,23 +381,68 @@ m2eclipse 플러그인에서 프로젝트의 resources 폴더가 누락되는 �
 <그림> 누락된 Deployment Asembly 설정  
 ![누락된 Deployment Asembly 설정](./imgs/dev.err.02.deploy.png "누락된 Deployment Asembly 설정")  
 
+설정화면을 보기 위해서는 ok.egov 프로텍트를 선택하고, 프로젝트의 속성 메뉴를 선택합니다. 메뉴에서 Project > Properties를 선택합니다.
+<그림> 프로젝트 속성 메뉴  
+![프로젝트 속성 메뉴](./imgs/dev.err.01.properties.png "프로젝트 속성 메뉴")  
 
+우측의 Add 버튼을 클릭하고 Folder를 선택합니다. Next 버튼을 클릭해서 다음 과정으로 진행합니다.  
+<그림> 폴더 선택  
+![폴더 선택](./imgs/dev.err.02.1.deploy.full.png "폴더 선택")
 
-![properties](./imgs/dev.err.01.properties.png "properties")  
-![deploy.full](./imgs/dev.err.02.1.deploy.full.png "deploy.full")
-![todo](./imgs/dev.err.02.2.deploy.full.png       "todo1")  
-![todo](./imgs/dev.err.02.3.deploy.full.png       "todo2")  
-![todo](./imgs/dev.err.02.7.class.notfound.png    "todo4")  
-![todo](./imgs/dev.err.02.a.ok.log.png            "todo7")  
+src > main > resources 폴더를 추가합니다. Finish 버튼을 클릭해서 폴더 선택을 마칩니다.
+<그림> resources 폴더 선택  
+![resources 폴더 선택](./imgs/dev.err.02.2.deploy.full.png "resources 폴더 선택")  
 
+소스 폴더에 해당하는 배치 경로를 설정합니다. /src/main/resources 항목의 Deploy Path를 선택하고 WEB-INF/classes 경로를 입력합니다. 위에 있는 항목을 복사해서 붙여넣어도 됩니다.
+<그림> 배치 경로  
+![배치 경로](./imgs/dev.err.02.3.deploy.full.png "배치 경로")  
+
+프로젝트를 다시 빌드하고 실행하면 정상적으로 샘플 프로젝트가 실행될 것입니다. 
+<그림> 샘플 프로젝트 정상 실행시 로그  
+![샘플 프로젝트 정상 실행시 로그](./imgs/dev.err.02.a.ok.log.png "샘플 프로젝트 정상 실행시 로그")  
+
+다른 원인이 있다면 로그 화면에 따라서 구글 등의 검색엔진을 통해서 해결의 실마리를 찾아야 할 것입니다. 
+
+### 메이븐, 빌드 도구  
 
 
 ## 개발환경 서버
 
+### 서브버전, 소스 버전 관리 도구
+
+### 허드슨, 지속적인 통합 도구  
+
+### 넥서스, 라이브러리 저장소  
+
 ## 개발환경 도구
+
+### 코드 네비게이션  
+
+### 디버깅  
+
+### 편집도구  
 
 ## 실행환경
 
+### 실행환경 개요  
+
+### 스프링 프레임워크  
+
+### 스프링 IoC/DI  
+
+### 스프링 MVC  
+
 ## 실행환경 구성
 
+### iBatis와 데이터베이스  
+
+### 오픈소스 프로젝트 소개
+
+## 공통 컴포넌트  
+
+### 공통 컴포넌트 구성  
+
+## 모바일 표준프레임워크  
+
+### 모바일 표준프레임워크 구성  
 
