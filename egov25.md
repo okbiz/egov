@@ -510,7 +510,46 @@ repository/conf 폴더에는 세 개의 파일이 있습니다. 그림과 같이
 표준프레임워크에는 서브버전 클라이언트로 서브버시브(Subversive) 플러그인이 포함되어 있습니다. 서브버시브 퍼스펙티브로 전환하기 위해서 Ctrl+3으로 퀵 액세스 창에서 svn을 입력합니다.  
 ![서브버시브 플러그인](./imgs/subversive.01.quickaccess.png "서브버시브 플러그인")  
 
-Perspectives 영역의 
+Perspectives 영역의 "SVN Repository Exploring" 아이콘을 확인합니다.  
+![서브버시브 퍼스펙티브](./imgs/subversive.02.perspective.png "서브버시브 퍼스펙티브")  
+좌측의 SVN Repositories 뷰의 "New Repository Location" 아이콘을 클릭합니다.  
+![서브버전 탐색기](./imgs/subversive.03.new.png "서브버전 탐색기")  
+
+나타나는 창에 다음과 같이 입력합니다. URL은 svn://localhost/svn 을 입력하고 Browse… 버튼을 눌러서 서브버전에 접속되는지 확인합니다. User에는 developer Password에는 passwd 라고 입력하고 Finish 버튼을 클릭합니다.  
+![서브버전 서버 연결 정보](./imgs/subversive.04.url.png "서브버전 서버 연결 정보")  
+
+SVN 저장소를 볼 수 있는 뷰에 그림과 같이 trunk, branches, tags 가 보일 것입니다. 정상적으로 연결이 되었다면 이제 소스를 등록할 차례입니다.  
+![서브버시브 퍼스펙티브](./imgs/subversive.05.repo.png "서브버시브 퍼스펙티브")  
+
+```
+서브버전의 주소 svn://localhost/svn 에서 사용하는 기본 포트는 3690 입니다.
+```
+
+#### 프로젝트 등록  
+
+![](./imgs/svn.10.team.share.png "")  
+![](./imgs/svn.11.share.svn.png "")  
+![](./imgs/svn.12.info.png "")  
+![](./imgs/svn.13.unconnected.png "")  
+![](./imgs/svn.14.connected.png "")  
+![](./imgs/svn.15.adv.mode.png "")  
+![](./imgs/svn.16.share.commit.png "")  
+![](./imgs/svn.17.src.commit.png "")  
+![](./imgs/svn.18.prj.shared.png "")  
+![](./imgs/svn.19.close.db.png "")  
+![](./imgs/svn.20.delete.prj.png "")  
+![](./imgs/svn.21.svn.pers.png "")  
+![](./imgs/svn.22.svn.prj.png "")  
+![](./imgs/svn.23.checkout.png "")  
+![](./imgs/svn.24.egov.pers.png "")  
+![](./imgs/svn.25.problems.png "")  
+![](./imgs/svn.26.clean.png "")  
+![](./imgs/svn.27.clean.prj.png "")  
+![](./imgs/svn.28.ignore.target.png "")  
+![](./imgs/svn.29.ignore.target.png "")  
+![](./imgs/svn.30.sync.pers.png "")  
+![](./imgs/svn.31.ignore.target.commit.png "")  
+
 
 
 ### 허드슨, 지속적인 통합 도구  
@@ -537,7 +576,7 @@ Perspectives 영역의
 
 ## 실행환경 구성
 
-### iBatis와 데이터베이스  
+### MyBatis와 데이터베이스  
 
 ### 오픈소스 프로젝트 소개
 
