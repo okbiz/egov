@@ -527,14 +527,31 @@ SVN 저장소를 볼 수 있는 뷰에 그림과 같이 trunk, branches, tags �
 
 #### 프로젝트 등록  
 
-![](./imgs/svn.10.team.share.png "")  
-![](./imgs/svn.11.share.svn.png "")  
-![](./imgs/svn.12.info.png "")  
-![](./imgs/svn.13.unconnected.png "")  
-![](./imgs/svn.14.connected.png "")  
-![](./imgs/svn.15.adv.mode.png "")  
-![](./imgs/svn.16.share.commit.png "")  
-![](./imgs/svn.17.src.commit.png "")  
+등록하려는 프로젝트를 eGovFrame 퍼스펙티브의 Package Explorer 뷰에서 선택합니다. 그림과 같이 컨텍스트 메뉴에서 Team > Share Project... 항목을 선택합니다.  
+![프로젝트 공유](./imgs/svn.10.team.share.png "프로젝트 공유")  
+
+CVS, Git, SVN에서 SVN을 선택합니다.  
+![SVN 선택](./imgs/svn.11.share.svn.png "SVN 선택")  
+
+SVN 저장소 연결정보를 확인합니다. URL 항목에 svn://localhost/svn 그리고 User / Password 에는 developer / passwd 가 있는지 확인합니다.
+![저장소 연결 정보 확인](./imgs/svn.12.info.png "저장소 연결 정보 확인")  
+
+URL 주소 옆의 Browse... 버튼을 클릭했을 때 만약 그림과 같이 서버 저장소에 접근할 수 없다면 <An error occurred while accessing the repository entry > 메시지를 만나게 됩니다. 이런 경우 서브버전 서비스가 제대로 동작하고 있는지, 입력 주소가 정확한지 확인해 보아야 합니다.  
+![연결 오류](./imgs/svn.13.unconnected.png "연결 오류")  
+
+정상적으로 접근했다면 branches, tags, trunk 폴더를 확인할 수 있습니다. ROOT 선택창을 Cancel 버튼을 클릭해서 닫고, Next 버튼을 클릭해서 다음으로 넘어 갑니다.  
+![정상 연결](./imgs/svn.14.connected.png "정상 연결")  
+
+일반적으로 프로젝트를 trunk 아래에 놓고 버전을 관리하게 됩니다. Simple Mode 아래 있는 Advenced Mode 를 선택합니다. 제일 아래 svn://localhost/svn/trunk/ok.egov 주소를 확인합니다. 이 프로젝트의 svn주소가 됩니다.  
+![SVN Advenced Mode](./imgs/svn.15.adv.mode.png "SVN Advenced Mode")  
+
+프로젝트가 SVN 저장소에 자리를 잡기 위해서 제일 먼저 커밋(Commit)이 됩니다. Finish 버튼을 클릭하면 Share project "ok.egov" into "svn://localhost/svn" 코멘트로 커밋이 됩니다.  
+![프로젝트 커밋](./imgs/svn.16.share.commit.png "프로젝트 커밋")  
+
+이어서 소스를 커밋하기 위한 창이 뜹니다. 하단의 목록에서 커밋 대상이 되는 소스를 선택할 수 있습니다. 코멘트에 init라고 입력합니다. 버전 관리 시스템에 커밋할 때 간단한 메시지를 입력하는 것은 나중에 이력을 조회할 때 매우 중요하기 때문에 반드시 입력해야 합니다.   
+![소스 커밋](./imgs/svn.17.src.commit.png "소스 커밋")  
+
+
 ![](./imgs/svn.18.prj.shared.png "")  
 ![](./imgs/svn.19.close.db.png "")  
 ![](./imgs/svn.20.delete.prj.png "")  

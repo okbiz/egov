@@ -1,0 +1,766 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+<style>
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote {
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: "Helvetica Neue", Helvetica, "Hiragino Sans GB", Arial, sans-serif;
+    font-size: 13px;
+    line-height: 18px;
+    color: #737373;
+    background-color: white;
+    margin: 10px 13px 10px 13px;
+}
+table {
+	margin: 10px 0 15px 0;
+	border-collapse: collapse;
+}
+td,th {	
+	border: 1px solid #ddd;
+	padding: 3px 10px;
+}
+th {
+	padding: 5px 10px;	
+}
+
+a {
+    color: #0069d6;
+}
+a:hover {
+    color: #0050a3;
+    text-decoration: none;
+}
+a img {
+    border: none;
+}
+p {
+    margin-bottom: 9px;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #404040;
+    line-height: 36px;
+}
+h1 {
+    margin-bottom: 18px;
+    font-size: 30px;
+}
+h2 {
+    font-size: 24px;
+}
+h3 {
+    font-size: 18px;
+}
+h4 {
+    font-size: 16px;
+}
+h5 {
+    font-size: 14px;
+}
+h6 {
+    font-size: 13px;
+}
+hr {
+    margin: 0 0 19px;
+    border: 0;
+    border-bottom: 1px solid #ccc;
+}
+blockquote {
+    padding: 13px 13px 21px 15px;
+    margin-bottom: 18px;
+    font-family:georgia,serif;
+    font-style: italic;
+}
+blockquote:before {
+    content:"\201C";
+    font-size:40px;
+    margin-left:-10px;
+    font-family:georgia,serif;
+    color:#eee;
+}
+blockquote p {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+    font-style: italic;
+}
+code, pre {
+    font-family: Monaco, Andale Mono, Courier New, monospace;
+}
+code {
+    background-color: #fee9cc;
+    color: rgba(0, 0, 0, 0.75);
+    padding: 1px 3px;
+    font-size: 12px;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+}
+pre {
+    display: block;
+    padding: 14px;
+    margin: 0 0 18px;
+    line-height: 16px;
+    font-size: 11px;
+    border: 1px solid #d9d9d9;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+}
+pre code {
+    background-color: #fff;
+    color:#737373;
+    font-size: 11px;
+    padding: 0;
+}
+@media screen and (min-width: 914px) {
+    body {
+        width: 854px;
+        margin:10px auto;
+    }
+}
+@media print {
+	body,code,pre code,h1,h2,h3,h4,h5,h6 {
+		color: black;
+	}
+	table, pre {
+		page-break-inside: avoid;
+	}
+}
+</style>
+<title>전자정부 표준프레임워크</title>
+
+</head>
+<body>
+<h1>전자정부 표준프레임워크</h1>
+
+<h2>개요</h2>
+
+<p>전자정부 표준프레임워크는 국내 SI 프로젝트의 수행을 돕기 위해서 오픈소스를 패키징하고,
+국내 SI 프로젝트를 분석해서 도출해 낸 200여 가지 공통 컴포넌트 소스 템플릿을 더한
+오픈소스 프로젝트입니다.</p>
+
+<p>대형 SI 회사가 아닌 중소규모의 회사에서 공공기관이나 민간 프로젝트를 수행할 때 도움이
+되도록 구성되어 있습니다. 스프링 프레임워크와 이클립스 개발도구를 통해서 개발생산성을
+높일 수 있으며, ALM(Application Lifecycle Management) 관점에서
+소스버전관리를 위해 서브버전, 지속적인 통합을 위해 허드슨, 손쉬운 빌드를 위해서 메이븐을
+이용하고 있습니다.</p>
+
+<h3>전자정부 표준프레임워크 아키텍처</h3>
+
+<p>전자정부 표준프레임워크(이하 표준프레임워크)는 이클립스 개발도구 중심의 개발환경, 스프링
+프레임워크 중심의 실행환경, 서비스요청관리를 위한 관리환경, 모니터링 도구를 중심으로 한
+운영환경, 그리고 공통적으로 재사용이 가능한 기능위주로 개발한 컴포넌트의 집합인
+공통컴포넌트로 구성되어 있습니다. 2.0 버전부터는 jQueryMobile 중심의 모바일
+프레임워크가 추가되었습니다.</p>
+
+<p>&lt;그림> 표준프레임워크 구성 (2.5)<br/>
+<img src="./imgs/intro_egovframe2.5.png" title="개발환경 다운로드 페이지" alt="개발환경 다운로드 페이지" /></p>
+
+<h2>개발환경</h2>
+
+<p>실행환경 개발을 위한 개발환경을 먼저 살펴보겠습니다.</p>
+
+<h3>표준프레임워크 개발환경 다운로드</h3>
+
+<p>개발환경을 구성하기 위해 필요한 파일을 다운로드해야 합니다.
+<a href="http://www.egovframe.go.kr">http://www.egovframe.go.kr</a> 사이트에
+접속합니다. 로그인 후에 다운로드 받을 수 있기 때문에, 먼저 회원가입을 마칩니다.
+로그인 하고, 상단 메뉴의 다운로드를 선택합니다. 개발환경 메뉴를 선택하면 다운로드할
+수 있는 목록이 보입니다.</p>
+
+<p>&lt;그림> 개발환경 다운로드 페이지<br/>
+<img src="./imgs/downloads.egovframe.dev.01.png" title="개발환경 다운로드 페이지" alt="개발환경 다운로드 페이지" /></p>
+
+<h3>개발환경 2.5.1 다운로드</h3>
+
+<p>페이지 중간으로 내려 보면 개발환경 링크 목록이 나옵니다. 1.0.0과 2.0.1의 이전
+버전들도 다운로드 링크가 있습니다. Light Version과 Full Version으로 나뉘어
+있는데, 모바일 개발환경이 필요하지 않다면 Light Version을 받으면 조금 가벼운
+개발도구를 다운로드 받을 수 있습니다.
+책에서는 "개발자용 개발환경(Implementation Tool) Full Version 2.5.1"을
+기준으로 설명하겠습니다.</p>
+
+<p>&lt;그림> 개발환경 다운로드 목록<br/>
+<img src="./imgs/downloads.egovframe.dev.02.png" title="개발환경 다운로드 목록" alt="개발환경 다운로드 목록" /></p>
+
+<h3>다운로드 상세 페이지</h3>
+
+<p>로그인 후에 상세페이지로 이동해서 Full Version을 다운로드합니다. 설명에도 있지만
+이클립스의 여러 가지 플러그인들이 설치되어 있는 통합 개발도구입니다.</p>
+
+<blockquote><p>개발자용 개발환경(Implementation Tool) Full Version은 개발자의 코드 작성을
+지원하는 도구로써, eGovFrame기반의 어플리케이션 개발을 지원하는 IDE와
+Editor(SourceCode, UML, ERD, DBIO, WebFlow, Code Generation,
+Code Inspection, 공통컴포넌트 생성, 맞춤형 개발환경, Nexus, SVN)와
+Debug(Local, Remote), Mobile IDE, Batch IDE, RDT로 구성되어 있습니다.</p></blockquote>
+
+<p>일반적인 이클립스 Java EE 패키지가 230MB 정도인데, 2.5배의 크기입니다.</p>
+
+<p>&lt;그림> 개발환경 Full Version 2.5.1 상세 페이지<br/>
+<img src="./imgs/downloads.egovframe.dev.03.png" title="개발환경 Full Version 2.5.1 상세 페이지" alt="개발환경 Full Version 2.5.1 상세 페이지" /></p>
+
+<p>네트워크마다 속도가 다릅니다만 대략 5~10분 정도가 소요됩니다.</p>
+
+<p>&lt;그림> 개발환경 Full Version 2.5.1 다운로드<br/>
+<img src="./imgs/downloads.egovframe.dev.04.png" title="개발환경 Full Version 2.5.1 다운로드 속도" alt="개발환경 Full Version 2.5.1 다운로드" /></p>
+
+<h3>개발환경 도구 설치</h3>
+
+<p>다운로드 받은 eGovFrameDev-2.5.1-FullVer.zip 파일의 압축을 풉니다.
+eGovFrameDev-2.5.1-FullVer 폴더를 C:\ 경로로 이동합니다.
+C:\eGovFrameDev-2.5.1-FullVer 폴더 안에 eclipse 와 workspace가 보이면
+제대로 위치를 잡았습니다.</p>
+
+<p>&lt;그림> 개발환경 도구 설치 위치<br/>
+<img src="./imgs/downloads.install.dev.01.png" title="개발환경 도구 설치 위치" alt="개발환경 도구 설치 위치" /></p>
+
+<h3>개발환경 서버 설치</h3>
+
+<p>실행하기 전에 다음 장에서 설명할 개발환경 서버를 먼저 설치합니다. 개발도구를 실행하기
+위한 jdk(Java Development Kit; 자바 개발 도구)가 함께 있기 때문입니다. 물론
+개발환경 서버 없이도 jdk가 설치되어 있다면 개발환경 도구만으로도 작업이 가능합니다.
+책에서는 개발환경 서버를 먼저 설치하고 이용하도록 설명하겠습니다. 다운로드 목록
+페이지에서 "개발환경 2.0.0 다운로드" 그룹을 보면 서버용 개발환경을 볼 수 있습니다.
+윈도우를 기준으로 설명합니다.</p>
+
+<p>&lt;그림> 개발환경 2.0.0 서버용 개발환경<br/>
+<img src="./imgs/downloads.devsvr.01.png" title="개발환경 2.0.0 서버용 개발환경" alt="개발환경 2.0.0 서버용 개발환경" /></p>
+
+<p>"서버용 개발환경(Development Tool - Windows) Version 2.0.0" 링크를
+클릭하고 이동하면 첨부파일이 두 가지 보입니다. eGovFrameSvr_win.2.0.0.exe
+파일과 eGovFrameSvr_Installer_가이드.docx 파일입니다. 가이드 문서 파일에는
+윈도우와 리눅스 모두 설명이 되어 있습니다.</p>
+
+<p>&lt;그림> 서버용 개발환경 윈도우 버전<br/>
+<img src="./imgs/downloads.devsvr.02.png" title="서버용 개발환경 윈도우 버전" alt="서버용 개발환경 윈도우 버전" /></p>
+
+<p>설치는 기본설정 그대로 진행합니다. 윈도우7일 경우 관리자 권한이 필요합니다. 설치를
+하게 되는 컴포넌트들은 그림과 같습니다. Tomcat, Hudson, Subversion, Maven,
+Nexus 입니다. 여기 목록에는 없지만 Ant와 JDK가 포함되어 있습니다.</p>
+
+<p>&lt;그림> 서버용 개발환경 구성 컴포넌트<br/>
+<img src="./imgs/downloads.devsvr.03.install.png" title="서버용 개발환경 구성 컴포넌트" alt="서버용 개발환경 구성 컴포넌트" /></p>
+
+<p>설치 경로는 기본값이 C:\eGovFrameSvr 입니다. bin 폴더 안에는 비어있지 않고,
+톰캣과 svn을 실행할 수 있는 스크립트가 있습니다. repository 폴더는 서브버전의
+소스가 위치하는 공간입니다. 자세한 설명은 다음 장으로 미루고, 자바 개발에서 가장
+중요한 환경 변수 JAVA_HOME과 Path를 설정하겠습니다.</p>
+
+<p>&lt;그림> 서버용 개발환경 설치 위치<br/>
+<img src="./imgs/downloads.devsvr.04.path.png" title="서버용 개발환경 설치 위치" alt="서버용 개발환경 설치 위치" /></p>
+
+<h3>환경 변수 설정</h3>
+
+<p>환경 변수란 시스템에서 활용되는 변수를 뜻합니다. 윈도우에서는 환경 변수를 컴퓨터 속성 >
+고급 시스템 설정 > 고급 탭 > 환경 변수 > 시스템 변수 > 새로 만들기 순서로 접근해서
+만들 수 있습니다.<br/>
+윈도우 탐색기에서 컴퓨터를 선택합니다. 컨텍스트 메뉴(마우스 오른 버튼 클릭시 나오는 메뉴,
+문맥에 따라 항목이 바뀌는 메뉴)에서 속성을 선택합니다.<br/>
+&lt;그림> 컴퓨터 속성  <br/>
+<img src="./imgs/env01.computer.png" title="컴퓨터 속성" alt="컴퓨터 속성" /></p>
+
+<p>시스템 창에서 왼쪽 메뉴들 중 고급 시스템 설정을 클릭합니다. 윈도우XP에서는 바로 다음으로
+넘어갑니다.<br/>
+&lt;그림> 고급 시스템 설정  <br/>
+<img src="./imgs/env02.advanced.png" title="고급 시스템 설정" alt="고급 시스템 설정" /></p>
+
+<p>상단 탭 중에서 고급 탭을 선택합니다. 아래에 환경 변수 버튼이 보이고, 그 버튼을 클릭해서
+환경 변수를 수정할 수 있는 창으로 이동합니다.<br/>
+&lt;그림> 고급, 환경 변수  <br/>
+<img src="./imgs/env03.advanced.tab.png" title="고급, 환경 변수" alt="고급, 환경 변수" /></p>
+
+<p>사용자 변수와 하단에 시스템 변수로 나뉘어 있습니다. 윈도우는 일반적으로 사용자가 시스템을
+관리할 수 있는 시스템 권한을 갖고 있기 때문에 시스템 변수를 변경하겠습니다. 시스템 변수 쪽에
+있는 새로 만들기 버튼을 클릭합니다.<br/>
+&lt;그림> 시스템 변수<br/>
+<img src="./imgs/env04.system.var.png" title="시스템 변수" alt="시스템 변수" /></p>
+
+<p>새 시스템 변수 이름을 JAVA_HOME 그리고 변수 값에는 jdk 폴더 경로를 입력합니다.
+C:\eGovFrameSvr\jdk1.5 를 변수 값으로 넣었습니다.<br/>
+&lt;그림> 환경 변수 JAVA_HOME<br/>
+<img src="./imgs/env05.java_home.png" title="환경 변수 JAVA_HOME" alt="환경 변수 JAVA_HOME" /></p>
+
+<p>JAVA_HOME 환경 변수 추가한 후에 이를 이용한 Path 환경 변수를 수정합니다. Path를
+선택하고 편집 버튼을 클릭합니다. <br/>
+&lt;그림> 환경 변수 Path  <br/>
+<img src="./imgs/env06.path.png" title="환경 변수 Path" alt="환경 변수 Path" /></p>
+
+<p>변수 값 제일 앞으로 이동해서 %JAVA_HOME%\bin; 를 추가합니다. JAVA_HOME 환경 변수 앞
+뒤로 %를 붙여서 사용하고, 그 뒤에 \bin폴더를 더합니다. ;(세미콜론)으로 폴더값 간에 구분을
+짓습니다. Path는 시스템 어디 위치에서든 접근할 수 있는 경로들이 모아진 환경 변수입니다.<br/>
+&lt;그림> 환경 변수 Path, %JAVA_HOME%\bin;  <br/>
+<img src="./imgs/env07.path.bin.png" title="환경 변수 %JAVA_HOME%\bin;" alt="환경 변수 %JAVA_HOME%\bin;" /></p>
+
+<p>이제 환경 변수 설정은 모두 마쳤습니다. 정리하자면 JAVA_HOME의 bin 폴더에 있는 자바 관련
+파일들을 시스템 어디에서나 접근하기 위한 환경을 마련하는 절차였습니다. 이제 표준프레임워크를
+시작할 준비가 다 되었습니다.</p>
+
+<h3>개발환경 도구 시작</h3>
+
+<p>자바가 실행될 수 있는 환경이 준비되었다면 표준프레임워크 개발 도구를 시작할 수 있습니다.
+윈도우 탐색기에서 C:\eGovFrameDev-2.5.1-FullVer\eclipse 폴더로 이동해서
+eclipse.exe 파일을 실행합니다.<br/>
+&lt;그림> 개발환경 도구 경로<br/>
+<img src="./imgs/dev.01.start.png" title="개발환경 도구 경로" alt="개발환경 도구 경로" /></p>
+
+<p>이클립스 이미지 대신 행안부 로고가 좌측 상단에 보이는 표준프레임워크 2.5 스플래시 이미지가
+보입니다.<br/>
+&lt;그림> 개발환경 도구 스플래시<br/>
+<img src="./imgs/dev.02.splash.png" title="개발환경 도구 스플래시" alt="개발환경 도구 스플래시" /></p>
+
+<p>워크스페이스를 설정하는 창이 뜹니다. C:\eGovFrameDev-2.5.1-FullVer\workspace 경로를
+확인합니다. OK 버튼을 클릭하고 이클립스를 띄웁니다.</p>
+
+<pre><code>워크스페이스(workspace):  
+프로젝트 그룹의 기준 디렉토리가 워크스페이스입니다. 소스 파일들이 위치하게 됩니다. 
+참고로 워크스페이스마다 .metadata 라는 폴더를 포함하는데, 여기에 이클립스의 설정 정보가 
+저장됩니다. 이 때문에 워크스페이스를 변경하면 이클립스를 리셋하는 효과가 나타납니다.
+</code></pre>
+
+<p>&lt;그림> 워크스페이스 경로<br/>
+<img src="./imgs/dev.03.workspace.png" title="워크스페이스 경로" alt="워크스페이스 경로" /></p>
+
+<p>이클립스가 시작되었습니다. 다른 이클립스 패키지와 다른 것은 eGovFrame 퍼스펙티브로 되어 있고,
+메뉴에 eGovFrame이 보입니다. 표준프레임워크에서 제공하는 기능들을 접근하는 통로가 됩니다. <br/>
+&lt;그림> 이클립스 개발 도구 실행<br/>
+<img src="./imgs/dev.04.workbench.png" title="이클립스 개발 도구 실행" alt="이클립스 개발 도구 실행" /></p>
+
+<h3>퍼스펙티브; 화면 레이아웃</h3>
+
+<p>화면에 에디터를 중심으로 한 뷰의 레이아웃을 볼 수 있는데, 이렇게 작업별로 구성된 레이아웃을
+퍼스펙티브라고 합니다. 상단의 메뉴, 툴바, 하단의 상태바, 중간에는 뷰와 에디터가 위치합니다.
+뷰와 에디터는 탭을 마우스로 드래그해서 위치를 이동할 수 있습니다.<br/>
+&lt;그림> 퍼스펙티브 구성 요소<br/>
+<img src="./imgs/dev.05.perspective.png" title="퍼스펙티브 구성 요소" alt="퍼스펙티브 구성 요소" /></p>
+
+<h3>프로젝트 생성</h3>
+
+<p>이클립스는 울트라에디트나 에디트플러스 같은 텍스트 편집기와는 달리 개별 파일 단위가 아닌
+프로젝트 단위로 파일을 관리합니다. 클래스 참조 등 파일 간의 유기적인 관계를 더 이용할 수 있다는
+뜻입니다.</p>
+
+<p>우선 표준프레임워크 프로젝트를 만들어 보겠습니다. 좌측 상단의 툴바 첫 아이콘을 클릭합니다.<br/>
+&lt;그림> New 툴바 버튼<br/>
+<img src="./imgs/dev.prj.01.btn.new.png" title="New 툴바 버튼" alt="New 툴바 버튼" /></p>
+
+<p>이어 나오는 창에서 web이라고 입력하면 필터링됩니다. eGovFrame Web Project 항목을 선택하고
+Next 버튼을 클릭합니다.<br/>
+&lt;그림> eGovFrame 웹 프로젝트<br/>
+<img src="./imgs/dev.prj.01.new.png" title="eGovFrame 웹 프로젝트" alt="eGovFrame 웹 프로젝트" /></p>
+
+<p>프로젝트 명칭은 메이븐에서 요구되는 그룹 ID와 아티팩트 ID 때문에 .으로 연결해서 구성합니다.
+ok.egov 라고 입력하면 하단의 Maven Setting쪽에 구분되어 나오게 됩니다. Next 버튼을
+눌러서 다음 단계로 이동합니다.<br/>
+&lt;그림> 프로젝트 이름<br/>
+<img src="./imgs/dev.prj.02.name.png" title="프로젝트 이름" alt="프로젝트 이름" /></p>
+
+<p>간단한 게시판 구조의 샘플 코드가 준비되어 있습니다. Generate Example 항목을 체크하면
+프로젝트 생성과 동시에 샘플 코드도 함께 만들어집니다.</p>
+
+<p>&lt;그림> 프로젝트 샘플 코드<br/>
+<img src="./imgs/dev.prj.03.gen.png" title="프로젝트 샘플 코드" alt="프로젝트 샘플 코드" /></p>
+
+<p>만들어진 프로젝트의 구조는 그림과 같습니다. 자바 소스 폴더가 4가지 보입니다. 이 구조는 메이븐
+빌드 도구에서 일반적으로 사용하는 폴더 구조입니다.<br/>
+&lt;그림> 프로젝트 샘플 코드 구조<br/>
+<img src="./imgs/dev.prj.04.src.tree.png" title="프로젝트 샘플 코드 구조" alt="프로젝트 샘플 코드 구조" /></p>
+
+<p>샘플 소스 관련된 설명은 차후로 미루고, 일단 웹 프로젝트의 실행을 위한 톰캣 서버를 연결하겠습니다.</p>
+
+<h3>톰캣 서버 설정</h3>
+
+<p>웹 프로젝트를 실행하기 위해서 톰캣이 필요합니다. 개발환경 서버에는 톰캣6이 함께 포함되어
+있습니다. 이 톰캣을 연결해서 앞에서 생성한 샘플 프로젝트를 실행해 보겠습니다.</p>
+
+<p>이클립스 하단의 여러 뷰 중에서 Servers 뷰를 선택합니다. new server wizard 링크를
+클릭하면 새로운 창이 나타납니다.
+&lt;그림> 서버 뷰<br/>
+<img src="./imgs/dev.svr.01.new.png" title="서버 뷰" alt="서버 뷰" /></p>
+
+<p>tom 이라고 입력하면 Tomcat 이라는 서버들이 보입니다. Tocmat v6.0 Server을 선택합니다.
+Next 버튼을 눌러 다음 단계로 이동합니다.<br/>
+&lt;그림> 새로운 서버 정하기<br/>
+<img src="./imgs/dev.svr.02.tom.png" title="새로운 서버 정하기" alt="새로운 서버 정하기" /></p>
+
+<p>Browse... 버튼을 누르면 새로운 창이 뜹니다. 개발환경 서버에 설치된 톰캣 경로를 찾습니다.
+C:\eGovFrameSvr\tomcat6 입니다.<br/>
+&lt;그림> 톰캣6 서버 경로 찾기<br/>
+<img src="./imgs/dev.svr.03.folder.png" title="톰캣6 서버 경로 찾기" alt="톰캣6 서버 경로 찾기" /></p>
+
+<p>경로가 맞게 설정되었는지 확인합니다. Finish 버튼을 클릭해서 설정을 종료합니다.<br/>
+&lt;그림> 톰캣6 서버 경로 설정<br/>
+<img src="./imgs/dev.svr.04.tomcat6.png" title="톰캣6 서버 경로 설정" alt="톰캣6 서버 경로 설정" /></p>
+
+<p>이클립스에서 톰캣6로 연결할 경우 설정 정보가 있는 톰캣의 conf 폴더가 워크스페이스의
+Servers 프로젝트 하위로 복사됩니다.<br/>
+&lt;그림> 서버 프로젝트  <br/>
+<img src="./imgs/dev.svr.05.servers.png" title="서버 프로젝트" alt="서버 프로젝트" /></p>
+
+<p>개발환경 서버에 있는 톰캣6의 포트는 7070을 사용합니다. 이것을 8080 포트로 바꿔서
+두 개의 톰캣이 한 시스템에서 동작할 수 있도록 하겠습니다. 서버 탭에 나타난
+Tomcat v6.0 Server at localhost 를 더블클릭합니다. 편집기 영역에 그림과 같이
+파일이 불려집니다.<br/>
+&lt;그림> 톰캣 서버 설정<br/>
+<img src="./imgs/dev.svr.06.setting.png" title="톰캣 서버 설정" alt="톰캣 서버 설정" /></p>
+
+<p>서버 설정 화면 우측에 Ports 항목이 보일 것입니다. 7071을 8081로, 7070을 8080으로
+변경하고 저장하시면 됩니다. ctrl+S로 저장할 수 있습니다. 나중에 변경할 경우, 톰캣이
+실행 중이면 저장되지 않기 때문에 저장하기 전에 실행중인 톰캣을 정지해야 합니다.</p>
+
+<p>&lt;그림> 톰캣 포트 변경<br/>
+<img src="./imgs/dev.svr.07.port.png" title="톰캣 포트 변경" alt="톰캣 포트 변경" /></p>
+
+<h3>프로젝트 실행</h3>
+
+<p>톰캣 서버 설정을 마쳤으면 이제 샘플로 만들어진 프로젝트를 실행할 수 있습니다. 프로젝트
+ok.egov를 선택하고 컨텍스트 메뉴 > Run As > Run on Server 항목을 선택합니다.</p>
+
+<p>&lt;그림> 웹 프로젝트 실행
+<img src="./imgs/dev.run.01.png" title="웹 프로젝트 실행" alt="웹 프로젝트 실행" /></p>
+
+<p>서버를 선택하는 창이 나타납니다. 목록에 있는 서버를 선택하고 Finish 버튼을 클릭합니다.
+8080포트를 사용하는 서버가 시작됩니다.</p>
+
+<p>&lt;그림> 실행 서버 선택<br/>
+<img src="./imgs/dev.run.02.select.png" title="실행 서버 선택" alt="실행 서버 선택" /></p>
+
+<p>이클립스에 웹 뷰가 나타나면서 샘플 프로젝트 http://localhost:8080/egov/ 웹페이지를
+호출합니다. 샘플 프로젝트는 DB를 호출하게 되어 있습니다. DB 서버에 접속할 수 없어서
+"Could not open JDBC Connection ..." 메시지를 보게 됩니다. 지금까지 잘 따라오신
+것입니다. 다음으로 DB 서버를 시작해보겠습니다. 참고로 경우에 따라 몇 가지 예외가 발생하게
+되는데, 이 절의 마지막에 예외 처리를 위한 방법들을 알려드리겠습니다.</p>
+
+<p>&lt;그림> JDBC 연결 에러 메시지<br/>
+<img src="./imgs/dev.run.03.nojdbc.png" title="JDBC 연결 에러 메시지" alt="JDBC 연결 에러 메시지" /></p>
+
+<p>ok.egov 프로젝트 폴더에 DATABASE/db 가 있습니다. db 폴더를 펼쳐 보면 여러 sql 관련
+파일들을 볼 수 있습니다. 여기서 hsqldb라는 경량 파일 DB를 실행해 보겠습니다. db폴더를
+선택합니다. 이 경로를 쉽게 이동하기 위해서 pathtool이라는 플러그인 기능을 사용합니다.</p>
+
+<p>&lt;그림> db 폴더<br/>
+<img src="./imgs/dev.run.04.hsqldb.png" title="db 폴더" alt="db 폴더" /></p>
+
+<p>이클립스 상단 툴바에서 까만 아이콘을 클릭합니다. 선택된 경로로 커맨드 창을 띄워주는 기능입니다.</p>
+
+<p>&lt;그림> pathtool 커맨드 창 아이콘<br/>
+<img src="./imgs/dev.run.05.pathtool.png" title="pathtool 커맨드 창 아이콘" alt="pathtool 커맨드 창 아이콘" /></p>
+
+<p>커맨드 창이 hsqlDB를 실행할 수 있는 db 폴더에 경로가 맞춰져서 뜹니다. runHSqlDB.cmd
+파일을 실행할 것입니다. run이라고 입력하고 키보드 좌측의 탭키를 치면 나머지 이름이 자동으로
+완성됩니다. 엔터를 눌러 hsqlDB를 실행합니다. 만약 종료하기 원하면 이 커맨드 창을 닫아버리거나,
+이 창에서 ctrl+C를 입력하면 hsqlDB가 정지됩니다.
+DB 실행을 확인했다면 에러가 발생했던 화면으로 가서 새로 페이지를 호출해 봅니다.</p>
+
+<p>&lt;그림> hsqlDB 실행<br/>
+<img src="./imgs/dev.run.06.runhsql.png" title="hsqlDB 실행" alt="hsqlDB 실행" /></p>
+
+<p>hsql 데이터베이스가 실행된 후에 화면을 새로고침 아이콘을 통해서 갱신하면 목록이 나타납니다.
+데이터에 입력과 조화가 가능한 간단한 예제입니다. 이후에 이 예제를 통해서 스프링 프레임워크의
+기본을 알아보겠습니다.<br/>
+&lt;그림> 샘플 프로젝트 실행 화면<br/>
+<img src="./imgs/dev.run.07.sample.png" title="샘플 프로젝트 실행 화면" alt="샘플 프로젝트 실행 화면" /></p>
+
+<p>톰캣 서버를 정지하기 위해서는 서버 탭에서 정지를 원하는 서버를 선택하고 빨간 아이콘을 클릭하면
+shutdown 명령을 실행한 것처럼 정지됩니다. 모니터 아이콘의 콘솔 탭에서도 빨간 아이콘이 있는데,
+프로세스를 kill하는 효과가 있습니다. 이 경우 종료 절차를 거치지 않고, 바로 종료됩니다.
+시작 아이콘과 디버그 아이콘을 통해서 톰캣을 다시 시작할 수 있습니다.<br/>
+&lt;그림> 톰캣 서버 시작과 정지<br/>
+<img src="./imgs/dev.run.08.stop.png" title="톰캣 서버 시작과 정지" alt="톰캣 서버 시작과 정지" /></p>
+
+<h3>웹 애플리케이션 배포 에러 대응</h3>
+
+<p>표준프레임워크 개발도구 사용시 발생되는 몇 가지 에러 상황이 있습니다. 웹 애플리케이션에 오류가 있는 경우 404 에러가 발생하는 경우와 m2eclipse 플러그인의 버그로 resources 폴더가 배포되지 않는 경우 두 가지를 설명하겠습니다.</p>
+
+<p>콘솔 뷰에 그림과 같이 Class를 찾을 수 없다고 에러가 나는 경우는 빌드가 제대로 되지 않은 경우입니다.<br/>
+&lt;그림> 클래스를 찾지 못하는 예외<br/>
+<img src="./imgs/dev.err.04.fail.png" title="클래스를 찾지 못하는 예외" alt="클래스를 찾지 못하는 예외" /><br/>
+&lt;그림> 클래스를 찾지 못하는 예외 2<br/>
+<img src="./imgs/dev.err.02.7.class.notfound.png" title="클래스를 찾지 못하는 예외 2" alt="클래스를 찾지 못하는 예외 2" /><br/>
+브라우저에는 404 에러를 표시하고, 프로젝트의 다른 파일 경로도 404로 나타나지 않습니다. 이런 경우 Context 전체가 웹앱으로 등록되지 못해서 발생하는 경우입니다. web.xml 파일에 등록된 클래스를 찾지 못하는 경우도 같은 상황이 발생하게 됩니다.<br/>
+&lt;그림> 404 Page Not Found<br/>
+<img src="./imgs/dev.err.03.fail.png" title="404 Page Not Found" alt="404 Page Not Found" /></p>
+
+<p>이런 경우 프로젝트를 다시 빌드해줍니다. 그리고, 등록된 웹 앱을 톰캣에서 제거했다가 다시 등록하고, 배포된 소스 폴더와 톰캣의 work폴더를 지워주는 작업도 함께 합니다. 이에 대한 방법을 설명하겠습니다.<br/>
+서버 뷰의 톰캣 하위에 보면 ok.egov 프로젝트가 연결되어 있는 것이 보입니다. ok.egov를 선택하고 컨텍스트 메뉴에서 Remove를 선택하면 톰캣과 프로젝트의 연결이 제거됩니다. 프로젝트를 다시 실행하면 재등록되기 때문에 지우는 것에 부담을 가질 필요는 없습니다.<br/>
+&lt;그림> 프로젝트 연결 끊기<br/>
+<img src="./imgs/dev.err.02.4.remove.png" title="프로젝트 연결 끊기" alt="프로젝트 연결 끊기" /></p>
+
+<p>우선 프로젝트의 빌드를 다시 합니다. 기존에 컴파일된 클래스를 다 지우고, 새로 컴파일하는 것입니다. 컴파일과 리소스의 복사 과정이 포함된 빌드를 다시 수행하면 누락된 클래스를 포함할 수 있습니다. 이클립스 좌측 Project Explorer에서 ok.egov 프로젝트를 선택합니다. 메뉴의 Project > Clean...을 선택합니다.<br/>
+&lt;그림> 프로젝트 Clean...<br/>
+<img src="./imgs/dev.err.02.8.prj.clean.png" title="프로젝트 Clean..." alt="프로젝트 Clean..." /></p>
+
+<p>이어서 나오는 창에서 프로젝트를 선택합니다. 전체를 선택하면 워크스페이스의 모든 프로젝트를 전부 다시 빌드합니다. 우측에 있는 선택한 프로젝트만 다시 빌드 라디오 버튼을 클릭하고 ok.egov 프로젝트를 선택합니다. OK 버튼을 클릭하면 다시 빌드가 이루어집니다.</p>
+
+<p>&lt;그림> 다시 빌드할 프로젝트 선택<br/>
+<img src="./imgs/dev.err.02.9.prj.clean.png" title="다시 빌드할 프로젝트 선택" alt="다시 빌드할 프로젝트 선택" /></p>
+
+<p>그리고 톰캣에 배포된 소스를 지워줍니다. 서버 뷰에서 톰캣을 선택하고 컨텍스트 메뉴에서 Clean 항목을 선택합니다. 이클립스 워크스페이스에서 톰캣 서버가 사용하는 위치로 코드가 배포되어서 실행되는데 .metadata/.plugins/org.eclipse.wst.server.core/tmp0/wtpwebapps 폴더 하위에 배포됩니다. 여기 있는 코드를 지우고 다시 배포하는 작업입니다.<br/>
+&lt;그림> 톰캣 Clean...<br/>
+<img src="./imgs/dev.err.02.5.tomcat.clean.png" title="톰캣 Clean..." alt="톰캣 Clean..." /></p>
+
+<p>JSP를 실행할 경우 자동으로 서블릿 java로 변환되고, 이것을 컴파일해서 클래스를 만들어 실행합니다. 이 때 작업 파일이 위치하는 폴더가 work입니다. 이 폴더 또한 비우는 과정입니다. 서버 뷰에서 톰캣을 선택하고 컨텍스트 메뉴에서 Clean tomcat Work Directory...를 선택합니다.<br/>
+&lt;그림> 톰캣 Work 폴더 지우기<br/>
+<img src="./imgs/dev.err.02.6.tomcat.clean.work.png" title="톰캣 Work 폴더 지우기" alt="톰캣 Work 폴더 지우기" /></p>
+
+<p>이 과정을 거치면 프로젝트를 깨끗이 빌드하게 됩니다.</p>
+
+<h3>Deployment Assembly 이슈</h3>
+
+<p>m2eclipse 플러그인에서 프로젝트의 resources 폴더가 누락되는 버그가 가끔 발생합니다. 정상적으로 생성된다면 그림과 같이 되어야 합니다.
+&lt;그림> 정상적인 Deployment Assembly 설정<br/>
+<img src="./imgs/dev.err.05.deploy.full.png" title="정상적인 Deployment Assembly 설정" alt="정상적인 Deployment Assembly 설정" /></p>
+
+<p>그러나 잘못 설정된 경우는 여러 항목이 빠져 있습니다. 때문에 빌드 시에 properties 같은 파일들이 포함되지 않아서 프로젝트가 실행되지 않게 됩니다.<br/>
+&lt;그림> 누락된 Deployment Asembly 설정<br/>
+<img src="./imgs/dev.err.02.deploy.png" title="누락된 Deployment Asembly 설정" alt="누락된 Deployment Asembly 설정" /></p>
+
+<p>설정화면을 보기 위해서는 ok.egov 프로텍트를 선택하고, 프로젝트의 속성 메뉴를 선택합니다. 메뉴에서 Project > Properties를 선택합니다.
+&lt;그림> 프로젝트 속성 메뉴<br/>
+<img src="./imgs/dev.err.01.properties.png" title="프로젝트 속성 메뉴" alt="프로젝트 속성 메뉴" /></p>
+
+<p>우측의 Add 버튼을 클릭하고 Folder를 선택합니다. Next 버튼을 클릭해서 다음 과정으로 진행합니다.<br/>
+&lt;그림> 폴더 선택<br/>
+<img src="./imgs/dev.err.02.1.deploy.full.png" title="폴더 선택" alt="폴더 선택" /></p>
+
+<p>src > main > resources 폴더를 추가합니다. Finish 버튼을 클릭해서 폴더 선택을 마칩니다.
+&lt;그림> resources 폴더 선택<br/>
+<img src="./imgs/dev.err.02.2.deploy.full.png" title="resources 폴더 선택" alt="resources 폴더 선택" /></p>
+
+<p>소스 폴더에 해당하는 배치 경로를 설정합니다. /src/main/resources 항목의 Deploy Path를 선택하고 WEB-INF/classes 경로를 입력합니다. 위에 있는 항목을 복사해서 붙여넣어도 됩니다.
+&lt;그림> 배치 경로<br/>
+<img src="./imgs/dev.err.02.3.deploy.full.png" title="배치 경로" alt="배치 경로" /></p>
+
+<p>프로젝트를 다시 빌드하고 실행하면 정상적으로 샘플 프로젝트가 실행될 것입니다.
+&lt;그림> 샘플 프로젝트 정상 실행시 로그<br/>
+<img src="./imgs/dev.err.02.a.ok.log.png" title="샘플 프로젝트 정상 실행시 로그" alt="샘플 프로젝트 정상 실행시 로그" /></p>
+
+<p>다른 원인이 있다면 로그 화면에 따라서 구글 등의 검색엔진을 통해서 해결의 실마리를 찾아야 할 것입니다.</p>
+
+<h3>메이븐, 빌드 도구</h3>
+
+<p>메이븐은 아파치의 오픈 소스 빌드 도구입니다. <a href="http://maven.apache.org">http://maven.apache.org</a> 사이트에서 정보를 구할 수 있습니다. 빌드란 프로그램 소스의 컴파일을 포함해서 애플리케이션을 사용할 수 있도록 패키징까지 해주는 과정입니다. 개발환경 도구에는 메이븐의 이클립스 플러그인이 함께 설치되어 있습니다. m2eclipse라는 플러그인이며, 이클립스에서 메이븐을 쉽게 사용하도록 도와주는 기능을 제공합니다.</p>
+
+<h4>메이븐 프로젝트 소스 구조</h4>
+
+<p>메이븐은 설정보다 관례(CoC;Convention over Configuration)라는 컨셉으로, 먼저 나왔던 <a href="http://ant.apache.org">ANT(http://ant.apache.org)</a> 빌드 도구와 달리 빌드의 설정을 자유롭게 하는 대신 지정된 규칙에 따라 코드를 위치시키면 컴파일, 패키징, 문서화 등의 나머지 작업들을 자동으로 수행해 줍니다.</p>
+
+<h4>자바 라이브러리 일괄 관리</h4>
+
+<p>메이븐은 여러 프로젝트에 중복 산재해 있는 자바 라이브러리(JAR)를 한 곳에서 관리합니다. 일반적으로 프로젝트에서 소스코드가 차지하는 용량이 3~5메가라고 하면 jar파일의 크기는 30~50메가가 넘는 경우가 많습니다. 이런 경우 버전관리 시스템에서 제외시켜서 관리할 수 있다면 매우 가볍게 작업이 가능합니다.<br/>
+메이븐은 사용자 홈 디렉토리를 기준으로 .m2 라는 폴더를 만들어서 repository 폴더 하위에 인터넷에서 다운로드 받은 jar 파일을 관리합니다. pom.xml 에서 지정된 라이브러리들을 필요에 따라 복사하거나 참조해서 사용합니다.</p>
+
+<h4>메이븐 설치</h4>
+
+<p>전자정부 표준프레임워크의 개발환경 서버를 설치하면 메이븐이 함께 설치됩니다. JAVA_HOME 환경변수 같이 MAVEN_HOME을 지정하고, PATH에 추가해도 되지만 메이븐/bin, 폴더만 PATH 환경변수에 추가하겠습니다.
+컴퓨터 아이콘을 클릭하고, 컨텍스트 메뉴에서 속성을 선택합니다.<br/>
+&lt;그림> 환경변수 설정 시작  <br/>
+<img src="./imgs/mvn.install.1.png" title="컴퓨터 속성" alt="컴퓨터 속성" /></p>
+
+<p>제어판의 좌측에서 고급 시스템 설정을 클릭합니다.<br/>
+&lt;그림> 고급 시스템 설정<br/>
+<img src="./imgs/mvn.install.2.png" title="고급 시스템 설정" alt="고급 시스템 설정" /></p>
+
+<p>하단의 시스템 변수에서 Path 항목을 선택합니다. 여기에 들어갈 값은 빌게이츠 친구 탐색기에서 복사할 수 있습니다.<br/>
+&lt;그림> 시스템 변수 Path<br/>
+<img src="./imgs/mvn.install.3.Path.png" title="시스템 변수 Path" alt="시스템 변수 Path" /></p>
+
+<p>탐색기를 열어서 C:\eGovFrameSvr\maven\bin 폴더에 들어갑니다. 주소줄을 클릭해서 복사합니다.<br/>
+&lt;그림> 메이븐 경로 복사<br/>
+<img src="./imgs/mvn.install.4.Path.png" title="메이븐 경로 복사" alt="메이븐 경로 복사" /></p>
+
+<p>시스템 환경 변수 Path의 제일 앞에 복사한 C:\eGovFrameSvr\maven\bin 경로를 추가하고 ;을 붙여서 구분해 줍니다.<br/>
+&lt;그림> 메이븐 경로 Path에 추가<br/>
+<img src="./imgs/mvn.install.5.Path.png" title="메이븐 경로 Path에 추가" alt="메이븐 경로 Path에 추가" /></p>
+
+<p>cmd 창을 띄워서 mvn --version 을 입력합니다. 버전이 표시되면 정상적으로 설치가 된 것입니다.<br/>
+&lt;그림> 메이븐 버전 확인<br/>
+<img src="./imgs/mvn.install.6.check.png" title="메이븐 버전 확인" alt="메이븐 버전 확인" /></p>
+
+<h4>메이븐 간단 테스트</h4>
+
+<p>간단히 템플릿 코드를 생성해 보겠습니다. 다음의 코드를 cmd창에 입력합니다.<br/>
+<code>
+mvn archetype:generate -DgroupId=com.mycompany.app -DartifactId=my-app -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+</code></p>
+
+<p>필요한 jar파일을 알아서 다운로드합니다. 그 파일들을 이용해서 archetype 플러그인의 generate 골을 실행합니다.  <br/>
+&lt;그림> 메이븐 아키타입 실행<br/>
+<img src="./imgs/mvn.install.7.quickstart.png" title="메이븐 아키타입 실행" alt="메이븐 아키타입 실행" /></p>
+
+<p>tree /f 도스 명령어를 이용해서 생성된 파일들과 폴더를 보면 다음과 같습니다.  src/main, src/test 폴더에 각각 지정한 groupId 패키지에 따른 하위 폴더와 각각의 java 샘플이 있고, 가장 상위에는 pom.xml 파일이 있습니다.<br/>
+&lt;그림> 메이븐 아키타입 퀵스타트 구조<br/>
+<img src="./imgs/mvn.install.8.quickstart.png" title="메이븐 아키타입 퀵스타트 구조" alt="메이븐 아키타입 퀵스타트 구조" /></p>
+
+<p>빌드는 mvn package 페이즈(phase)를 통해서 할 수 있습니다.<br/>
+&lt;그림> 메이븐 pacakge 페이즈 실행<br/>
+<img src="./imgs/mvn.install.9.package.png" title="메이븐 pacakge 페이즈 실행" alt="메이븐 pacakge 페이즈 실행" /></p>
+
+<p>결과는 target 폴더가 만들어지면서 담기게 됩니다. quickstart 샘플의 경우 jar파일이 만들어 집니다.<br/>
+&lt;그림> 메이븐 산출물 target<br/>
+<img src="./imgs/mvn.install.10.target.png" title="메이븐 산출물 target" alt="메이븐 산출물 target" /></p>
+
+<p>target 폴더로 이동해서 java -cp my-app-1.0.SNAPSHOT.jar com.mycompany.app.App 명령을 입력하면 실행할 수 있습니다.<br/>
+&lt;그림> 메이븐 결과 실행<br/>
+<img src="./imgs/mvn.install.11.run.png" title="메이븐 결과 실행" alt="메이븐 결과 실행" /></p>
+
+<p>간단히 메이븐을 설치하고 이용하는 방법을 알아보았습니다.</p>
+
+<h2>개발환경 서버</h2>
+
+<p>개발팀이 함께 개발을 하기 위해서 서브버전과 같은 소스 코드 저장소가 필요합니다. 서브버전을 중심으로 허드슨, 넥서스와 같이 개발 상황을 확인하고, 도와주는 제품들이 개발환경 서버에 패키징되어 있습니다. 이 장에서는 개발환경 서버의 주요 기능들을 서브버전, 허드슨, 넥서스 순서로 살펴보겠습니다.</p>
+
+<h3>서브버전, 소스 버전 관리 도구</h3>
+
+<p>서브버전은 프로젝트 소스를 저장하고 공유할 수 있는 버전관리시스템입니다. 앞서 개발환경 서버를 설치하고 JAVA_HOME을 환경변수에 추가했습니다. 서브버전과 톰캣을 윈도우 서비스에 등록합니다. 이클립스의 서브버전 플러그인을 통해서 연결하는 방법을 알아보겠습니다.</p>
+
+<h4>서브버전 설치 및 확인</h4>
+
+<p>개발환경 서버에서 서브버전은 bin폴더 안에 관련 파일들이 있습니다.<br/>
+&lt;그림> 서브버전 실행 파일<br/>
+<img src="./imgs/svn.00.exe.png" title="서브버전 실행 파일" alt="서브버전 실행 파일" /></p>
+
+<h4>서브버전 서비스 실행</h4>
+
+<p>윈도우 서비스에 등록하는 start.bat 파일을 실행합니다. <br/>
+<img src="./imgs/svn.00.start.png" title="서브버전 서비스 등록" alt="서브버전 서비스 등록" /></p>
+
+<p>윈도우7일 경우 관리자 권한으로 실행해야 정상동작합니다. svnserve와 tomcat이 함께 서비스에 등록되고 실행됩니다.
+<img src="./imgs/svn.01.start.png" title="서브버전 서비스 실행" alt="서브버전 서비스 실행" /></p>
+
+<p>탐색기에서 컴퓨터를 선택하고 컨텍스트 메뉴에서 관리를 선택하면 서비스 항목을 보실 수 있습니다.<br/>
+<img src="./imgs/svn.02.service.png" title="서브버전 서비스 실행 확인" alt="서브버전 서비스 실행 확인" /></p>
+
+<h4>서브버전 설정</h4>
+
+<p>repository/conf 폴더에는 세 개의 파일이 있습니다. 그림과 같이 authz, passwd, svnserve.conf 파일입니다.<br/>
+<img src="./imgs/svn.03.conf.png" title="서브버전 설정" alt="서브버전 설정" /></p>
+
+<p>이 중에서 passwd 파일을 열어보면 다음과 같이 계정과 비밀번호가 기록되어 있습니다.<br/>
+<img src="./imgs/svn.04.passwd.png" title="서브버전 계정 정보" alt="서브버전 계정 정보" /></p>
+
+<h4>이클립스와 서브버전 연결</h4>
+
+<p>표준프레임워크에는 서브버전 클라이언트로 서브버시브(Subversive) 플러그인이 포함되어 있습니다. 서브버시브 퍼스펙티브로 전환하기 위해서 Ctrl+3으로 퀵 액세스 창에서 svn을 입력합니다.<br/>
+<img src="./imgs/subversive.01.quickaccess.png" title="서브버시브 플러그인" alt="서브버시브 플러그인" /></p>
+
+<p>Perspectives 영역의 "SVN Repository Exploring" 아이콘을 확인합니다.<br/>
+<img src="./imgs/subversive.02.perspective.png" title="서브버시브 퍼스펙티브" alt="서브버시브 퍼스펙티브" /><br/>
+좌측의 SVN Repositories 뷰의 "New Repository Location" 아이콘을 클릭합니다.<br/>
+<img src="./imgs/subversive.03.new.png" title="서브버전 탐색기" alt="서브버전 탐색기" /></p>
+
+<p>나타나는 창에 다음과 같이 입력합니다. URL은 svn://localhost/svn 을 입력하고 Browse… 버튼을 눌러서 서브버전에 접속되는지 확인합니다. User에는 developer Password에는 passwd 라고 입력하고 Finish 버튼을 클릭합니다.<br/>
+<img src="./imgs/subversive.04.url.png" title="서브버전 서버 연결 정보" alt="서브버전 서버 연결 정보" /></p>
+
+<p>SVN 저장소를 볼 수 있는 뷰에 그림과 같이 trunk, branches, tags 가 보일 것입니다. 정상적으로 연결이 되었다면 이제 소스를 등록할 차례입니다.<br/>
+<img src="./imgs/subversive.05.repo.png" title="서브버시브 퍼스펙티브" alt="서브버시브 퍼스펙티브" /></p>
+
+<pre><code>서브버전의 주소 svn://localhost/svn 에서 사용하는 기본 포트는 3690 입니다.
+</code></pre>
+
+<h4>프로젝트 등록</h4>
+
+<p>등록하려는 프로젝트를 eGovFrame 퍼스펙티브의 Package Explorer 뷰에서 선택합니다. 그림과 같이 컨텍스트 메뉴에서 Team > Share Project... 항목을 선택합니다.<br/>
+<img src="./imgs/svn.10.team.share.png" title="프로젝트 공유" alt="프로젝트 공유" /></p>
+
+<p>CVS, Git, SVN에서 SVN을 선택합니다.<br/>
+<img src="./imgs/svn.11.share.svn.png" title="SVN 선택" alt="SVN 선택" /></p>
+
+<p>SVN 저장소 연결정보를 확인합니다. URL 항목에 svn://localhost/svn 그리고 User / Password 에는 developer / passwd 가 있는지 확인합니다.
+<img src="./imgs/svn.12.info.png" title="저장소 연결 정보 확인" alt="저장소 연결 정보 확인" /></p>
+
+<p>URL 주소 옆의 Browse... 버튼을 클릭했을 때 만약 그림과 같이 서버 저장소에 접근할 수 없다면 <An error occurred while accessing the repository entry > 메시지를 만나게 됩니다. 이런 경우 서브버전 서비스가 제대로 동작하고 있는지, 입력 주소가 정확한지 확인해 보아야 합니다.<br/>
+<img src="./imgs/svn.13.unconnected.png" title="연결 오류" alt="연결 오류" /></p>
+
+<p>정상적으로 접근했다면 branches, tags, trunk 폴더를 확인할 수 있습니다. ROOT 선택창을 Cancel 버튼을 클릭해서 닫고, Next 버튼을 클릭해서 다음으로 넘어 갑니다.<br/>
+<img src="./imgs/svn.14.connected.png" title="정상 연결" alt="정상 연결" /></p>
+
+<p>일반적으로 프로젝트를 trunk 아래에 놓고 버전을 관리하게 됩니다. Simple Mode 아래 있는 Advenced Mode 를 선택합니다. 제일 아래 svn://localhost/svn/trunk/ok.egov 주소를 확인합니다. 이 프로젝트의 svn주소가 됩니다.<br/>
+<img src="./imgs/svn.15.adv.mode.png" title="SVN Advenced Mode" alt="SVN Advenced Mode" /></p>
+
+<p>프로젝트가 SVN 저장소에 자리를 잡기 위해서 제일 먼저 커밋(Commit)이 됩니다. Finish 버튼을 클릭하면 Share project "ok.egov" into "svn://localhost/svn" 코멘트로 커밋이 됩니다.<br/>
+<img src="./imgs/svn.16.share.commit.png" title="프로젝트 커밋" alt="프로젝트 커밋" /></p>
+
+<p>이어서 소스를 커밋하기 위한 창이 뜹니다. 하단의 목록에서 커밋 대상이 되는 소스를 선택할 수 있습니다. 코멘트에 init라고 입력합니다. 버전 관리 시스템에 커밋할 때 간단한 메시지를 입력하는 것은 나중에 이력을 조회할 때 매우 중요하기 때문에 반드시 입력해야 합니다. <br/>
+<img src="./imgs/svn.17.src.commit.png" title="소스 커밋" alt="소스 커밋" /></p>
+
+<p><img src="./imgs/svn.18.prj.shared.png" alt="" /><br/>
+<img src="./imgs/svn.19.close.db.png" alt="" /><br/>
+<img src="./imgs/svn.20.delete.prj.png" alt="" /><br/>
+<img src="./imgs/svn.21.svn.pers.png" alt="" /><br/>
+<img src="./imgs/svn.22.svn.prj.png" alt="" /><br/>
+<img src="./imgs/svn.23.checkout.png" alt="" /><br/>
+<img src="./imgs/svn.24.egov.pers.png" alt="" /><br/>
+<img src="./imgs/svn.25.problems.png" alt="" /><br/>
+<img src="./imgs/svn.26.clean.png" alt="" /><br/>
+<img src="./imgs/svn.27.clean.prj.png" alt="" /><br/>
+<img src="./imgs/svn.28.ignore.target.png" alt="" /><br/>
+<img src="./imgs/svn.29.ignore.target.png" alt="" /><br/>
+<img src="./imgs/svn.30.sync.pers.png" alt="" /><br/>
+<img src="./imgs/svn.31.ignore.target.commit.png" alt="" /></p>
+
+<h3>허드슨, 지속적인 통합 도구</h3>
+
+<h3>넥서스, 라이브러리 저장소</h3>
+
+<h2>개발환경 도구</h2>
+
+<h3>코드 네비게이션</h3>
+
+<h3>디버깅</h3>
+
+<h3>편집도구</h3>
+
+<h2>실행환경</h2>
+
+<h3>실행환경 개요</h3>
+
+<h3>스프링 프레임워크</h3>
+
+<h3>스프링 IoC/DI</h3>
+
+<h3>스프링 MVC</h3>
+
+<h2>실행환경 구성</h2>
+
+<h3>MyBatis와 데이터베이스</h3>
+
+<h3>오픈소스 프로젝트 소개</h3>
+
+<h2>공통 컴포넌트</h2>
+
+<h3>공통 컴포넌트 구성</h3>
+
+<h2>모바일 표준프레임워크</h2>
+
+<p>스마트폰의 등장과 생활 속에서 강력한 파급효과를 보이면서, 업무를 모바일 환경에서 적용하려는 노력이 많아지고 있습니다. 스마트폰에 있는 웹브라우저는 가장 발전이 빠른 웹킷엔진을 사용하고 있습니다. 품질이 좋은 오픈소스가 많이 활용되기 때문입니다.</p>
+
+<h3>모바일 표준프레임워크 구성</h3>
+
+<h4>jQueryMobile</h4>
+
+<h4>viewport</h4>
+
+<hr />
+
+<p>http://okjsp.tistory.com<br/>
+http://okjsp.net<br/>
+http://github.com/kenu</p>
+</body>
+</html>
