@@ -490,35 +490,46 @@ target 폴더로 이동해서 java -cp my-app-1.0.SNAPSHOT.jar com.mycompany.app
 
 #### 서브버전 서비스 실행  
 윈도우 서비스에 등록하는 start.bat 파일을 실행합니다.   
+<그림> 서브버전 서비스 등록  
 ![서브버전 서비스 등록](./imgs/svn.00.start.png "서브버전 서비스 등록")  
 
 윈도우7일 경우 관리자 권한으로 실행해야 정상동작합니다. svnserve와 tomcat이 함께 서비스에 등록되고 실행됩니다. 
+<그림> 서브버전 서비스 실행  
 ![서브버전 서비스 실행](./imgs/svn.01.start.png "서브버전 서비스 실행")  
 
 탐색기에서 컴퓨터를 선택하고 컨텍스트 메뉴에서 관리를 선택하면 서비스 항목을 보실 수 있습니다.  
+<그림> 서브버전 서비스 실행 확인  
 ![서브버전 서비스 실행 확인](./imgs/svn.02.service.png "서브버전 서비스 실행 확인")  
 
  	    
 #### 서브버전 설정  
 repository/conf 폴더에는 세 개의 파일이 있습니다. 그림과 같이 authz, passwd, svnserve.conf 파일입니다.  
+<그림> 서브버전 설정  
 ![서브버전 설정](./imgs/svn.03.conf.png "서브버전 설정")  
 
 이 중에서 passwd 파일을 열어보면 다음과 같이 계정과 비밀번호가 기록되어 있습니다.  
+<그림> 서브버전 계정 정보  
 ![서브버전 계정 정보](./imgs/svn.04.passwd.png "서브버전 계정 정보")  
 
 #### 이클립스와 서브버전 연결  
 표준프레임워크에는 서브버전 클라이언트로 서브버시브(Subversive) 플러그인이 포함되어 있습니다. 서브버시브 퍼스펙티브로 전환하기 위해서 Ctrl+3으로 퀵 액세스 창에서 svn을 입력합니다.  
+<그림> 서브버시브 플러그인  
 ![서브버시브 플러그인](./imgs/subversive.01.quickaccess.png "서브버시브 플러그인")  
 
 Perspectives 영역의 "SVN Repository Exploring" 아이콘을 확인합니다.  
+<그림> 서브버시브 퍼스펙티브  
 ![서브버시브 퍼스펙티브](./imgs/subversive.02.perspective.png "서브버시브 퍼스펙티브")  
+
 좌측의 SVN Repositories 뷰의 "New Repository Location" 아이콘을 클릭합니다.  
+<그림> 서브버전 탐색기  
 ![서브버전 탐색기](./imgs/subversive.03.new.png "서브버전 탐색기")  
 
 나타나는 창에 다음과 같이 입력합니다. URL은 svn://localhost/svn 을 입력하고 Browse… 버튼을 눌러서 서브버전에 접속되는지 확인합니다. User에는 developer Password에는 passwd 라고 입력하고 Finish 버튼을 클릭합니다.  
+<그림> 서브버전 서버 연결 정보  
 ![서브버전 서버 연결 정보](./imgs/subversive.04.url.png "서브버전 서버 연결 정보")  
 
 SVN 저장소를 볼 수 있는 뷰에 그림과 같이 trunk, branches, tags 가 보일 것입니다. 정상적으로 연결이 되었다면 이제 소스를 등록할 차례입니다.  
+<그림> 서브버시브 퍼스펙티브  
 ![서브버시브 퍼스펙티브](./imgs/subversive.05.repo.png "서브버시브 퍼스펙티브")  
 
 ```
@@ -528,45 +539,103 @@ SVN 저장소를 볼 수 있는 뷰에 그림과 같이 trunk, branches, tags �
 #### 프로젝트 등록  
 
 등록하려는 프로젝트를 eGovFrame 퍼스펙티브의 Package Explorer 뷰에서 선택합니다. 그림과 같이 컨텍스트 메뉴에서 Team > Share Project... 항목을 선택합니다.  
+<그림> 프로젝트 공유  
 ![프로젝트 공유](./imgs/svn.10.team.share.png "프로젝트 공유")  
 
 CVS, Git, SVN에서 SVN을 선택합니다.  
+<그림> SVN 선택  
 ![SVN 선택](./imgs/svn.11.share.svn.png "SVN 선택")  
 
 SVN 저장소 연결정보를 확인합니다. URL 항목에 svn://localhost/svn 그리고 User / Password 에는 developer / passwd 가 있는지 확인합니다.
+<그림> 저장소 연결 정보 확인  
 ![저장소 연결 정보 확인](./imgs/svn.12.info.png "저장소 연결 정보 확인")  
 
 URL 주소 옆의 Browse... 버튼을 클릭했을 때 만약 그림과 같이 서버 저장소에 접근할 수 없다면 <An error occurred while accessing the repository entry > 메시지를 만나게 됩니다. 이런 경우 서브버전 서비스가 제대로 동작하고 있는지, 입력 주소가 정확한지 확인해 보아야 합니다.  
+<그림> 연결 오류  
 ![연결 오류](./imgs/svn.13.unconnected.png "연결 오류")  
 
 정상적으로 접근했다면 branches, tags, trunk 폴더를 확인할 수 있습니다. ROOT 선택창을 Cancel 버튼을 클릭해서 닫고, Next 버튼을 클릭해서 다음으로 넘어 갑니다.  
+<그림> 정상 연결  
 ![정상 연결](./imgs/svn.14.connected.png "정상 연결")  
 
 일반적으로 프로젝트를 trunk 아래에 놓고 버전을 관리하게 됩니다. Simple Mode 아래 있는 Advenced Mode 를 선택합니다. 제일 아래 svn://localhost/svn/trunk/ok.egov 주소를 확인합니다. 이 프로젝트의 svn주소가 됩니다.  
+<그림> SVN Advenced Mode  
 ![SVN Advenced Mode](./imgs/svn.15.adv.mode.png "SVN Advenced Mode")  
 
 프로젝트가 SVN 저장소에 자리를 잡기 위해서 제일 먼저 커밋(Commit)이 됩니다. Finish 버튼을 클릭하면 Share project "ok.egov" into "svn://localhost/svn" 코멘트로 커밋이 됩니다.  
+<그림> 프로젝트 커밋  
 ![프로젝트 커밋](./imgs/svn.16.share.commit.png "프로젝트 커밋")  
 
 이어서 소스를 커밋하기 위한 창이 뜹니다. 하단의 목록에서 커밋 대상이 되는 소스를 선택할 수 있습니다. 코멘트에 init라고 입력합니다. 버전 관리 시스템에 커밋할 때 간단한 메시지를 입력하는 것은 나중에 이력을 조회할 때 매우 중요하기 때문에 반드시 입력해야 합니다.   
+<그림> 소스 커밋  
 ![소스 커밋](./imgs/svn.17.src.commit.png "소스 커밋")  
 
+svn연결이 완료되면 eGovFrame 퍼스펙티브의 Package Explorer 뷰에 보이는 프로젝트에 버전(리비전) 번호가 보입니다.  
+<그림> SVN 연결된 프로젝트  
+![SVN 연결된 프로젝트](./imgs/svn.18.prj.shared.png "SVN 연결된 프로젝트")  
 
-![](./imgs/svn.18.prj.shared.png "")  
-![](./imgs/svn.19.close.db.png "")  
-![](./imgs/svn.20.delete.prj.png "")  
-![](./imgs/svn.21.svn.pers.png "")  
-![](./imgs/svn.22.svn.prj.png "")  
-![](./imgs/svn.23.checkout.png "")  
-![](./imgs/svn.24.egov.pers.png "")  
-![](./imgs/svn.25.problems.png "")  
-![](./imgs/svn.26.clean.png "")  
-![](./imgs/svn.27.clean.prj.png "")  
-![](./imgs/svn.28.ignore.target.png "")  
-![](./imgs/svn.29.ignore.target.png "")  
-![](./imgs/svn.30.sync.pers.png "")  
-![](./imgs/svn.31.ignore.target.commit.png "")  
+#### 프로젝트 삭제하기  
+다음 섹션에서 다룰 서브버전에 등록된 프로젝트 가져오기를 위하여 프로젝트를 삭제할 것입니다. 현재 실행중인 DB를 ctrl+C 로 정지시키고, cmd 창을 닫습니다.  
+<그림> DB 정지하고 창 닫기  
+![DB 정지하고 창 닫기](./imgs/svn.19.close.db.png "DB 정지하고 창닫기")  
 
+프로젝트를 선택하고, 컨텍스트 메뉴에서 Delete(삭제)를 선택합니다. Delete project contents on disk (cannot be undone) 체크박스를 체크해야 워크스페이스 폴더 안의 모든 파일이 삭제 됩니다.  
+<그림> 프로젝트 완전 삭제  
+![프로젝트 완전 삭제](./imgs/svn.20.delete.prj.png "프로젝트 완전 삭제")  
+
+#### 서브버전 프로젝트 가져오기  
+
+서브버전에 등록된 프로젝트를 가져오는 방법을 설명합니다. SVN 저장소에 등록된 소스를 로컬로 가져오는 작업을 체크아웃(check out)이라고 합니다. SVN Repository Exploring 퍼스펙티브로 전환하려고 합니다. ctrl+3 으로 퀵 액세스 모드에서 svn이라고 입력하면 SVN 관련 퍼스펙티브 항목이 나타날 것입니다.  
+<그림> SVN Repository Exploring 퍼스펙티브 선택  
+![SVN Repository Exploring 퍼스펙티브 선택](./imgs/svn.21.svn.pers.png "SVN Repository Exploring 퍼스펙티브 선택")  
+
+SVN이 연결된 상태이기 때문에 연결된 주소를 볼 수 있습니다. 앞에서 등록한 ok.egov 프로젝트를 trunk 아래에서 확인합니다.  
+<그림> SVN 저장소  
+![SVN 저장소](./imgs/svn.22.svn.prj.png "SVN 저장소")  
+
+프로젝트를 선택하고 컨텍스트 메뉴에서 Check Out(체크 아웃) 메뉴를 클릭합니다. 프로젝트 소스를 로컬의 워크스페이스 폴더로 복사하고, 프로젝트를 가져옵니다.  
+<그림> 프로젝트 체크 아웃  
+![프로젝트 체크 아웃](./imgs/svn.23.checkout.png "프로젝트 체크 아웃")  
+
+가져오기가 끝나면 우측 상단의 퍼스펙티브 셀렉터에서 eGovFrame 아이콘을 클릭해서 퍼스펙티브를 변경합니다.
+<그림> 퍼스펙티브 셀렉터  
+![퍼스펙티브 셀렉터](./imgs/svn.24.egov.pers.png "퍼스펙티브 셀렉터")  
+
+가져온 프로젝트는 대체로 빌드 경로 등의 이슈가 있기 마련입니다. 만약 그림과 같이 오류가 있다면 우선 Problems 뷰나 Markers 뷰에서 오류를 확인합니다. 오류에 대해 조치를 취했다면 다시 빌드합니다.  
+<그림> 오류가 있는 프로젝트  
+![오류가 있는 프로젝트](./imgs/svn.25.problems.png "오류가 있는 프로젝트")  
+
+빌드를 다시 하려면 메뉴의 Project > Clean... 항목을 선택합니다. 클래스를 다 지우고, 다시 컴파일하는 메뉴입니다.   
+<그림> 프로젝트 클린  
+![프로젝트 클린](./imgs/svn.26.clean.png "프로젝트 클린")  
+
+워크스페이스 전체를 다시 클린할 수도 있고, 선택한 프로젝트만 클린하고 다시 빌드할 수 있습니다.  
+<그림> 클린할 프로젝트 선택  
+![클린할 프로젝트 선택](./imgs/svn.27.clean.prj.png "클린할 프로젝트 선택")  
+
+프로젝트가 정상적으로 빌드되면 빨간 색 표시가 사라질 것입니다.
+
+#### 서브버전 예외 폴더  
+
+프로젝트에서 target폴더는 버전관리에서 제외할 폴더입니다. target은 메이븐에서 만드는 폴더이고, 컴파일한 클래스와 jar, war 파일처럼 산출물이 만들어지는 폴더입니다. 이러한 폴더는 소스만 있으면 언제든지 재생할 수 있고, 용량이 크기 때문에 버전관리에서 제외합니다. 제외하는 방법은 다음과 같습니다. 
+
+물음표(?)가 붙은 target 폴더를 선택합니다. 컨텍스트 메뉴에서 Team > Add to svn:ignore... 항목을 클릭합니다.  
+<그림> svn:ignore  
+![svn:ignore](./imgs/svn.28.ignore.target.png "svn:ignore")  
+
+target 폴더를 버전관리하지 않도록 svn:ignore에 추가를 확인하는 창이 뜹니다.  
+<그림> target 폴더 제외  
+![target 폴더 제외](./imgs/svn.29.ignore.target.png "target 폴더 제외")  
+
+프로젝트 명 앞의 부등호 기호(>)는 해당 프로젝트에 변경이 일어났다는 것을 뜻합니다. 환경적인 변화도 커밋의 대상이 됩니다. 프로젝트를 선택하고 Team > Synchronize with Repository 항목을 클릭합니다.  
+<그림> 저장소 동기화 퍼스펙티브  
+![저장소 동기화 퍼스펙티브](./imgs/svn.30.sync.pers.png "저장소 동기화 퍼스펙티브")  
+
+마찬가지로 커밋 창에는 ignore target 이라는 코멘트를 답니다. 물론 한글로 코멘트를 달아도 됩니다.  
+<그림> 커밋 코멘트  
+![커밋 코멘트](./imgs/svn.31.ignore.target.commit.png "커밋 코멘트")  
+
+지금까지 간단히 서브버전을 설치하고, 실행하고, 연결하고, 프로젝트를 등록하고, 프로젝트를 체크 아웃하는 방법을 알아보았습니다. 소스를 서브버전에 커밋해서 등록한 경우 이것을 자동으로 빌드해서 검증하거나 배포하는 도구와 연결할 수 있습니다. 다음 장에서는 허드슨이라고 불리는 지속적인 통합(Continuous Integration) 도구를 이용해 보겠습니다.  
 
 
 ### 허드슨, 지속적인 통합 도구  
