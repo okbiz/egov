@@ -796,9 +796,55 @@ http://localhost:7070/nexus 로 접근할 수 있습니다.
 
 #### 넥서스 연결을 위한 설정  
 
+메이븐이 참조하는 설정은 C:\eGovFrameSvr\maven\conf\settings.xml 을 참고합니다. 
+표준프레임워크는 settings.xml 에서 라이브러리 저장소의 경로를 C:\eGovFrameSvr\m2\repository 로 
+정해놓았습니다. 
+
+settings.xml의 내용은 다음과 같습니다. 주석을 모두 제거하면 localRepository에 설정된 것이 보일 것입니다.  
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd">
+  <localRepository>C:/eGovFrameSvr/m2/repository</localRepository>
+  <pluginGroups>
+  </pluginGroups>
+  <proxies>
+  </proxies>
+  <servers>
+  </servers>
+  <mirrors>
+  </mirrors>
+  <profiles>
+  </profiles>
+</settings>
+
+```
+
+<mirrors> 태그에 다음과 같이 코드를 추가하면 됩니다. 192.168.0.8 아이피는 넥서스가 설치된 서버의 주소입니다.  
+
+```
+  <mirrors>    <mirror>      <id>nexus</id>      <mirrorOf>*</mirrorOf>      <url>http://192.168.0.8:7070/nexus/content/groups/public</url>    </mirror>  </mirrors>
+```
+
+이렇게 설정이 되면 메이븐이 바라보는 서버가 인터넷이 아닌 넥서스로 설정이 됩니다.  
+
+### 라이브러리 등록하기  
+넥서스에 라이브러리를 등록하는 과정을 설명하겠습니다. 개별 파일을 등록하는 방법과 저장소 전체를 복사하는 방법을 알아보겠습니다.  
+
+#### 커스텀 저장소 만들기  
+
+#### 커스텀 저장소 그룹에 추가하기  
+
+#### 개별 라이브러리 추가하기  
+
+#### 라이브러리 일괄 추가하기  
 
 
 ## 개발환경 도구
+
+표준프레임워크의 개발환경은 이클립스를 기준으로 구성되어 있습니다.  
 
 ### 코드 네비게이션  
 
