@@ -863,9 +863,167 @@ settings.xml의 내용은 다음과 같습니다. 주석을 모두 제거하면 
 함께 이 순서를 따라가보겠습니다.  
 
 #### 검색 옵션 수정
-이클립스에서 ctrl+h를 
+이클립스에서 ctrl+h를 입력하면 다양한 검색 옵션을 볼 수 있습니다. 
+가장 많이 사용되는 것이 File Search 이기 때문에 다른 옵션의 탭들은 가려놓고, 필요에 따라 추가할 것을 권장합니다. 
+검색창 우측 하단에 있는 Customize... 버튼을 클릭합니다.
+Deselect All 버튼을 클릭해서 모든 선택을 해제하고, File Search 항목만 체크합니다.  
+이제부터 ctrl+h 단축키를 누르면 File Search 탭만 보이게 될 것입니다. 이 검색 기능을 통해서 프로젝트에 있는 모든 파일의 문자열 검색을 쉽게 할 수 있습니다.
+
+#### URL 매핑 찾기  
+앞에서 다루었던 예제를 통해서 코드 네비게이션을 해보겠습니다. DB를 실행하고, ok.egov 프로젝트를 선택합니다. Run As Server 로 프로젝트를 실행합니다. 
+첫 줄에 있는 SAMPLE-00004 링크를 클릭해서 들어가면 주소줄이 다음과 같을 것입니다.  
+http://localhost:8080/egov/sample/updateSampleView.do;jsessionid=48CC82F461B0EE1024846CD0457AE858
+
+http://localhost:8080 부분은 프로토콜과 호스트명과 포트번호 정보를 갖고 있습니다.
+/egov 는 컨텍스트명입니다. 
+/sample/updateSampleView.do 부분이 URL매핑에 해당하는 주소입니다.
+;jsessionid=48CC82F461B0EE1024846CD0457AE858 는 세션을 구분하기 위한 정보입니다.
+
+URL 매핑을 찾기 위해서 주소줄에 보이는 /sample/updateSampleView.do 부분을 선택해서 복사합니다. 이클립스에서 ok.egov 프로젝트를 선택합니다. ctrl+h 단축키로 File Search 창을 엽니다. 검색 범위 Scope를 selected로 지정합니다. Search 버튼을 클릭하면 하단에 Search 뷰가 나타나고 /sample/updateSampleView.do 문자열이 포함된 모든 파일 목록이 나타납니다.  
+
+Search 뷰의 우측 상단에 있는 툴바 아이콘 중에서 하얀 역삼각형을 선택하면 보여지는 모양을 바꿀 수 있습니다. 계층적으로 보이는 것과 파일명을 우선적으로 보여주는 옵션이 있습니다.
+
+#### 콘트롤러 찾기  
+Search 뷰에서 EgovSampleController.java 파일을 더블클릭하면 편집기에 파일이 열리면서 검색된 부분이 보입니다. @RequestMapping("/sample/updateSampleView.do") 부분이 나타날 것입니다.  
+
+```  
+    @RequestMapping("/sample/updateSampleView.do")
+    public String updateSampleView(
+            @RequestParam("selectedId") String id ,
+            @ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model)
+            throws Exception {
+        SampleVO sampleVO = new SampleVO();
+        sampleVO.setId(id);
+        // 변수명은 CoC 에 따라 sampleVO
+        model.addAttribute(selectSample(sampleVO, searchVO));
+        return "/sample/egovSampleRegister";
+    }		
+```  
+
+컨트롤러에서 주의깊게 봐야할 부분은 서비스 호출입니다. 당장 보이는 부분은 없는데, selectSample()이 포함된 다음 라인으로 이동합니다.  
+
+```
+        model.addAttribute(selectSample(sampleVO, searchVO));
+```
+
+selectSample()이 선언된 위치로 가기 위해서 selectSample 을 클릭하고, F3 키를 누릅니다. 커서는 selectSample() 메소스 선언부로 이동합니다. 메소드에 @RequestMapping 어노테이션이 있는 것을 보니 /sample/selectSample.do 로 호출되었을 때 실행되는 메소드를 재활용하고 있습니다.   
+
+```
+    @RequestMapping("/sample/selectSample.do")
+    public @ModelAttribute("sampleVO")
+    SampleVO selectSample(
+            SampleVO sampleVO,
+            @ModelAttribute("searchVO") SampleDefaultVO searchVO) throws Exception {
+        return sampleService.selectSample(sampleVO);
+    }
+```
+
+#### 서비스 찾기  
+컨트롤러에서 서비스를 찾아서 이동하는 것도 Open Declaration(F3) 기능을 이용합니다.  
+
+```
+        return sampleService.selectSample(sampleVO);
+```
+
+위에 보이는 selectSample에 커서를 이동하고, F3를 클릭합니다.
+
+```
+    SampleVO selectSample(SampleVO vo) throws Exception;
+```
+메소드 시그니처(Signature; 서명)만 있는 EgovSampleService.java 인터페이스 파일이 열립니다. 여기에서 selectSample에 커서를 놓아둔 뒤에 ctrl+t를 클릭합니다. 이 인터페이스를 구현한 클래스가 목록으로 보입니다. 구현 클래스 EgovSampleServiceImpl 항목을 클릭하면 파일이 열리면서 해당 메소드가 나타납니다.
+
+```
+    public SampleVO selectSample(SampleVO vo) throws Exception {
+        SampleVO resultVO = sampleDAO.selectSample(vo);
+        if (resultVO == null)
+            throw processException("info.nodata.msg");
+        return resultVO;
+    }
+```
+
+#### DAO 찾기
+서비스에서 찾아보아야 할 것은 DAO입니다. DAO는 Data Access Object(데이터 접근 객체)를 의미하고, MyBatis 또는 iBatis 프레임워크를 이용하는 경우가 많습니다. 국내에서는 흔치 않지만 Hibername 또는 JPA(Java Persitence API)로 데이터를 다루는 경우도 있습니다. 
+
+```
+        SampleVO resultVO = sampleDAO.selectSample(vo);
+```
+위 라인에서 selectDAO가 DAO 인스턴스 변수입니다. selectSample 위치에 커서를 놓아두고, F3 키를 누르면 DAO 파일이 열립니다.
+
+```
+    public SampleVO selectSample(SampleVO vo) throws Exception {
+        return (SampleVO) selectByPk("sampleDAO.selectSample_S", vo);
+    }
+```
+
+SampleDAO.java 파일이 열리면서 selectSample() 메소드의 선언부가 나타납니다. selectByPk 위에 마우스를 올려보면 선언된 파일이 보일 것입니다. EgovAbstractDAO를 상속받은 것이 SampleDAO입니다. EgovAbstractDAO는 내부적으로 iBatis를 이용하고 있습니다. SQL Map에 저장된 SQL을 불러오기 위해서 키가 필요한데, 바로 이 키가 "sampleDAO.selectSample_S" 문자열입니다. 따옴표를 포함해서 "sampleDAO.selectSample_S" 부분을 선택하고 복사합니다.
+
+ok.egov 프로젝트를 다시 선택하고, 검색어에 "sampleDAO.selectSample_S"을 붙여 넣습니다. 프로젝트를 검색하면 xml 파일이 Search뷰에 보일 것입니다. EgovSample_Sample_SQL.xml 파일을 더블클릭하면 편집기 영역에 열립니다. 에디터 하단의 파일명이 있는 탭을 클릭하면 소스가 보입니다. 편집기 우측 선에 작은 점으로 된 링크가 보이는데, 클릭하면 검색된 라인으로 이동합니다.  
+
+```
+	<select id="sampleDAO.selectSample_S" resultMap="sample">
+		<![CDATA[
+			SELECT
+				ID, NAME, DESCRIPTION, USE_YN, REG_USER
+			FROM SAMPLE 
+			WHERE ID=#id#
+		]]>
+	</select>
+```
+
+#### JSP 찾기
+위와 같은 단계로 URL 매핑을 통해서 컨트롤러로 그리고 서비스를 거쳐 DAO와 SQL까지 찾아 들어왔습니다. 이클립스 상단 툴바의 우측에 있는 노란 왼쪽방향 화살표를 클릭하면 이전 작업 위치로 이동합니다. 단축키는 alt+왼쪽화살표입니다. 
+몇 번 누르면 콘트롤러 파일까지 갑니다. updateSampleView() 메소드로 다시 이동합니다.
+
+```  
+    @RequestMapping("/sample/updateSampleView.do")
+    public String updateSampleView(
+            @RequestParam("selectedId") String id ,
+            @ModelAttribute("searchVO") SampleDefaultVO searchVO, Model model)
+            throws Exception {
+        SampleVO sampleVO = new SampleVO();
+        sampleVO.setId(id);
+        // 변수명은 CoC 에 따라 sampleVO
+        model.addAttribute(selectSample(sampleVO, searchVO));
+        return "/sample/egovSampleRegister";
+    }		
+```  
+
+메소드 마지막에 있는 "/sample/egovSampleRegister" 에서 egovSampleRegister 를 선택합니다. ctrl+shift+R 을 클릭합니다. Open Resource 창이 열리면서 검색어에 선택한 텍스트가 입력되어 검색된 결과가 나옵니다. egovSampleRegister.jsp 파일을 더블클릭합니다.
+
+컨트롤러에서 model에 담긴 도메인 모델 SampleVO 값을 JSP에서 출력하게 됩니다.
+
+```
+<form:form commandName="sampleVO" name="detailForm">
+...
+		<tr>
+			<td class="tbtd_caption">카테고리명</td>
+			<td class="tbtd_content">
+				<form:input path="name" maxlength="30" cssClass="txt"/>
+				&nbsp;<form:errors path="name" />
+			</td>
+		</tr>
+```
+
+#### 코드 네비게이션 정리  
+여기까지 단순히 코드의 흐름을 따라가는 방법을 알아보았습니다. 스프링 프레임워크에 대해서는 실행환경을 설명하면서 조금 더 자세히 알아보도록 하겠습니다.  
+다음에는 디버깅에 대해서 소개하겠습니다. 삽질을 줄일 수 있는 좋은 개발도구의 기능입니다.
+
 
 ### 디버깅  
+흔히 원하는 결과가 나오지 않을 때 "마가 꼈다", "버그다" 라고 합니다. 가장 원시적인 검사 방법은 코드 중간 곳곳에 System.out.println(변수); 였습니다. 이 방법은 쓸데 없는 코드를 추가하고, 로그파일의 크기를 키우고, 성능에도 영향을 줍니다. 권장하고 싶지 않은 방법이지요. 통합개발환경(IDE)를 사용한다면 디버깅 기능을 이용하는 것을 권장합니다.
+
+#### 기본 용어
+
+
+#### 자바 디버깅
+
+
+#### JSP 디버깅
+
+
+#### 크롬에서 JS 디버깅
+
+
 
 ### 편집도구  
 
